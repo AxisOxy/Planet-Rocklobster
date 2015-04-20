@@ -1,0 +1,221 @@
+
+
+                            PPType 1.1 User Manual
+
+                                 Jul 6, 1991
+
+
+
+Preface
+=======
+
+   The programs and files in this distribution are freely distributable, but
+are also copyright (c) Nico François.  They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+
+1. An introduction
+==================
+
+     Hmmm, PPPrint... yeeeez, enough Ps to make soup out of !  Let's call it
+PPType, yeah, that's better :^D
+     I have never been able to figure out why I have been unable to find a
+simple, yet useful printing program for the Amiga.  Sure, you have all these
+powerful text formatters, but they are way too complicated to quickly print
+out something.  Almost all the other programs print by dumping everything to
+the printer, printing straight over paper perforation instead of sending a
+formfeed (euh... including PPMore :-).
+     Therefore I thought it was about time somebody wrote a utility to print
+out a file that would first of all divide the file up in pages before
+printing and maybe even, if at all possibe, print the filename and page
+number at the top of each page.  The program should get the pagelength from
+preferences, because not everybody has the same type of paper and the tab
+size should be user definable (never understood why the ANSI tab is set every
+whopping 8 characters, I prefer a much smaller tabsize).  Since nobody else
+seems to wanna write this, I decided to do it myself.  Probably needless to
+say PPType also loads and prints files crunched with PowerPacker :^)
+     If you haven't got PowerPacker you are of course missing one of the main
+features of this program.  PowerPacker is available as shareware (up to
+version 2.3b) or as a commercial program (version 4.0a).  The commercial
+version offers several enhancements like 40 to 50 times faster crunching,
+better crunching, overlay support and an ARexx port.
+
+
+2. Usage
+========
+
+     PPType will print a file (or files) to the printer or a file, it will
+decrunch files crunched with PowerPacker before printing them.  A header can
+be printed at the top of each page.  The tabsize is set to 8 by default, but
+can be changed.  The filename in the header will not include the path nor will
+it have the '.pp' suffix of crunched data files.
+     PPType will check the current preferences for pagewidth and pagelength,
+so check that these are correct.  Also make sure all the other printer
+preferences are set correctly (e.g. correct printer driver) and that the
+'printer.device' and the 'parallel.device' or 'serial.device' (depending on
+your printer) are in DEVS:.  If you want to make use of the filerequester you
+should also put the 'arp.library' in LIBS:.
+
+     PPType can be used in four different ways.
+
+- First of all via the CLI or Shell:
+
+     If you enter 'PPType ?' you will get a usage template.
+You use PPType like this:
+
+     PPType [<opts>] [<file|dir>] [[<opts>] <file>...]
+
+     With <opts> = [-o<out>] [-c#] [-l#] [-t#] [-a|h|p|n] 
+
+     As you can see, PPType accepts multiple filenames on its command line,
+you can also use the options between two filenames.  PPType does NOT support
+wildcards yet :-(, these will probably be supported in the next version.
+     PPType can be made resident so it doesn't have to be loaded every time
+you use it, use the ARP ARes command or the AmigaDOS Resident command for
+this.  You CAN'T make PPType resident when it is crunched !!  The file is
+supplied as an uncrunched command file with the pure bit set.
+     If you omit the filename, you will be presented with either a file
+prompt or a filerequester (if asl.library or arp.library is available).
+Entering PPType with a directory instead of a file as an argument will also
+get you a requester, but it will be positioned in the directory you specified.
+     If you 'Run' PPType the output will go to a small window PPType will
+open.  This way the CLI is free to be used for other things and you won't be
+bothered by the output from PPType.  If you are using ConMan or Kickstart 2.0
+the window will not be activated and will have no sizing gadget.
+
+     Options: (# means a number)
+
+     -o<out>   Use this to redirect the output to a file instead of the
+               printer.
+     -l#       Use this to override the preferences page length.
+     -c#       Use this to override the width.
+     -t#       Set tabsize used to print. (default 8, max. 16)
+
+     The following options are switches that can be toggled:
+
+     -h   Switch header on/off, if on, the top two lines of each page are
+          used for a header and a blank line.  The header can hold both
+          the filename (without the path and the .pp) and the pagenumber.
+          When the header is switched off the top two lines will be used
+          for text.
+     -p   Switch page numbering in the header on/off.
+     -n   Switch filename in the header on/off.
+     -a   Switch the use of ANSI escape codes to print the header in bold
+          on/off.  A header in bold gives a nice effect, but you may want to
+          switch this off when output is redirected to a file.
+
+     Examples:
+
+       o  PPType -h text.doc
+
+       Print the file 'text.doc' but do not print a header at the top of each
+       page.
+
+       o  PPType -o ram:file -l50 -a docs:test.doc -a -t3 ansititle.doc
+
+       This will print to 'ram:file' instead of the printer, pages with a
+       length of 50 lines will be used.  The first document will have a plain
+       header without ansi escape codes, the second file WILL have a bold
+       header.  The tabs will be set every 3 characters in the second file.
+
+
+- Via the WorkBench:
+
+     There are three different ways of using PPType via the workbench:  you
+can single click the PPType icon, press the shift key and select multiple
+text file icons ending by double clicking the last text file icon (files will
+be printed in the same order as they were selected), you can double-click the
+PPType icon and enter a filename in the string gadget (or the ARP file
+requester) you will be presented with, or if you are using Workbench 2.0 you
+can drop an icon on top of the PPType icon.
+     There are some preferences you can set with the aid of the WorkBench
+tooltypes.  PPType will look for five tooltypes, they should equal ON or OFF
+and they are all set to ON by default (except TABSIZE, which should equal a
+number).  These tooltypes should be set in the PPType icon, NOT the text file
+icons !  (Use 'Info' from the Workbench menu, or 'Information' from the Icons
+menu if you are using Workbench 2.0)
+
+     o HEADER   Equivalent to the '-h' option above. (e.g. use 'HEADER=OFF')
+     o PAGES                      '-p'
+     o NAME                       '-n'
+     o ANSI                       '-a'
+     o TABSIZE  Use this to change the tabsize. (e.g. use 'TABSIZE=3')
+
+
+NOTE: - PPType will add '.pp' to the filename when the file wasn't found.
+        This is very useful in the WorkBench enviroment: you can make an
+        icon for 'text.doc' but name the file 'text.doc.pp'.  Now the
+        WorkBench will show an icon with 'text.doc' as name, but if you
+        doubleclick it 'text.doc.pp' will be displayed.  (As long as there
+        is no 'text.doc' file in the directory !)
+      - When PPType makes the pages too long or too short check the PageLength
+        in preferences.  Also set the margins as wide as possible (e.g. Left
+        Margin 1 and Right Margin 80).
+      - A tip: put something like this in your startup-sequence:
+          'Alias PPType Run PPType -t3 []'
+        This way PPType will always be run as a background task and use tab
+        size of 3.  This is the best way to use PPType as a semi-detachable
+        program.  The reason I didn't make PPType detach automatically from
+        the CLI is that it then could no longer be made resident, and I
+        thought it was more useful if it could.
+
+
+                      As always, I hope you find this program useful !
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.1
+
+     No wildcards yet, sorry :(
+     Uses the all new powerpacker.library => shorter code :^D
+     Starting PPType from the CLI with a directory as an argument now puts
+       up the requester positioned in that directory. Extremely useful once
+       you get used to this :^)
+     If you are running Workbench 2.0 PPType will use the asl.library
+       instead of the arp.library (for the filerequester).
+
+*****************************************************************************
+VERSION 1.1a
+
+     Seemed that the asl requester no longer worked on the latest
+       Kickstart 2.0 (release V37). Fixed.
+     Asl requester doesn't show '.info' icon files.
+
+*****************************************************************************
+
+PPType 1.1 written by Nico François (Yes, Nico is my first name :-)
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

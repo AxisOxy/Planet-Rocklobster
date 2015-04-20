@@ -1,0 +1,168 @@
+
+                      **********************************
+
+                          powerpacker.library V35.274
+
+                          Release 1.4
+
+                          (c) 1991/1992 Nico François
+
+                      **********************************
+
+
+    First of all read the DISTRIBUTION file for information on... er well...
+distribution :-)
+
+    Several people suggested the development of a library to help programs
+decrunch files crunched with PowerPacker, and that is exactly what this is.
+    This library tries to make it very easy to support PowerPacked files. It
+is a standard Amiga shared, runtime library and is called exactly like all
+the other Amiga libraries. Using this library it will be a lot simpler to make
+your program 'PowerPacker compatible' than with the previously distributed
+decrunch source.
+
+    To install powerpacker.library copy it to your LIBS: directory by hand,
+or run the installation script 'Install' (by using 'Execute' or by double-
+clicking its icon).
+
+    You should also install reqtools.library in LIBS:.  It is needed for
+the requester functions in powerpacker.library.  The installation script
+will automatically install reqtools.library.
+
+
+    Using powerpacker.library
+    -------------------------
+
+    If you are a C programmer all you need to do is include the correct
+headers and open powerpacker.library. After that you can use the functions in
+the library as if they were C functions. If your program quits it must of
+course close the library again. See 'example.c' for a very simple example.
+
+    If you are using SAS/C 5.10 and you don't want to use pragmas, or if
+you are using version 4.0 or lower, you must link with LIB:pp.lib (small code)
+or LIB:ppnb.lib (large code).
+
+    Programmers that use Manx C can use 'Bind' to generate the glue routines
+they need (or if they are using 5.0 they can of course use pragmas for in-line
+library calls).
+
+    From version 1.3c onwards Dice C is also supported.  You can find two
+libraries to link with in the dlib directory.  Link with powerpackers.lib
+(stack args) or powerpackersr.lib (registerized args).
+
+    PPLib 1.4 now also includes libraries for the Aztec C compiler.  You can
+find them in the Aztec directory.
+
+    Assembly programmers should also include the correct files and open
+powerpacker.library. To call a function they must load A6 with the library
+base, put the arguments in the appropriate registers and jump to the library
+vector offset of the function they want to call. See 'example.asm' for a very
+simple example.
+
+    All library functions are explained in the file 'pplib.doc'.
+
+                                                       Enjoy.
+
+
+                               LIBRARY HISTORY:
+
+*****************************************************************************
+RELEASE 1.0 (Library Version 33.1)
+
+    First release.
+
+*****************************************************************************
+RELEASE 1.1 (Library Version 34.1)
+
+    Added 'ppOverlayDecrHdr' for use of library from overlay decrunch header.
+    Requesters now have depth and close gadgets.
+    Faster decrunching in 'pp...DecrHdr' code.
+
+*****************************************************************************
+RELEASE 1.1a (Library Version 34.2)
+
+    Bug fixed: A6 was not preserved in ppLoadData!
+    Oberon interface to the library included.
+
+*****************************************************************************
+RELEASE 1.2 (Library Version 35.254)
+
+    PowerPacker 4.0's library decrunch header needs this version to work.
+      Some things have changed to crunch files even better :-)
+    After relocation of loaded executable the instruction and data caches
+      are cleared.  This should insure compatibility with the 68040.
+      Note that this only applies to Amigas running Kickstart 2.0 (V37).
+    Crunching code added to library (4 new functions):
+      ppAllocCrunchInfo, ppFreeCrunchInfo, ppCrunchBuffer, ppWriteDataHeader.
+    One new requester function: ppEnterPassword.
+    The requester functions ppGetString and ppGetLong are now declared
+      obsolete!  They can now be found (much improved) in 'reqtools.library'.
+    'reqtools.library' _MUST_ be installed in your system for the the old
+      (obsolete) requester functions to work!  ppGetPassword and
+      ppEnterPassword also call functions in 'reqtools.library'.
+    ppErrorMessage function added to get default error messages.
+    Support for crunched LoadSeg files added for use with PPLoadSeg 1.1.
+    Stricter check for unknown data headers.
+
+*****************************************************************************
+RELEASE 1.3 (Library Version 35.255)
+
+    Fixed serious bug: PPLoadSeg files were incorrectly decrunched!
+    Now distributed with release 1.0a of reqtools.library.
+    Improved installation script.
+
+*****************************************************************************
+RELEASE 1.3a (Library Version 35.256)
+
+    Fixed serious bug: in low memory situations ppAllocCrunchInfo crashed!!
+    Small changes and enhancements to autodocs.
+
+*****************************************************************************
+RELEASE 1.3b (Library Version 35.256)
+
+    Updated Oberon interface by Kai Bolay included.
+    Release 1.0b of reqtools.library included.
+
+*****************************************************************************
+RELEASE 1.3c (Library Version 35.256)
+
+    Libraries (powerpackers.lib and powerpackersr.lib) for Dice C included.
+    Release 1.0c of reqtools.library included.
+
+*****************************************************************************
+RELEASE 1.4 (Library Version 35.274)
+
+    Command files using PowerPacker 3.0b's or 4.0a's library header will
+      decrunch faster.
+    Decrunching code optimized.  About 20% faster.
+    LoadPPLib will no longer return an error code when run on Kickstart 2.0
+      or higher.  It just won't load powerpacker.library and reqtools.library
+      in memory.  It can now safely be used in startup-sequences of disks for
+      both Kickstart 1.2/1.3 and 2.0.
+    Edited autodoc for ppDecrunchBuffer() a bit.  Hope this helps Michael
+      Berg :-)  (Michael, if you are reading this, your optimized decrunch
+      code in PowerPackerPatcher 1.4b turned out to be just as fast as the
+      original code.  A 'lsr.l d1,d0' takes just as many clock cycles as a
+      'lsr.l #1,d0'!  I suppose you compared your "optimized" decruncher to
+      an old PowerPacker decruncher since I optimized the decruncher by 15 to
+      20% when I released version 3.0a.  I suggest you use ppDecrunchBuffer()
+      for your next release of PowerPackerPatcher since it is now faster.)
+    No longer uses partial FreeMem()s as it seems these are illegal.
+    Latest revision of Oberon interface included.
+    Aztec C interface to the library included.
+    Release 1.0d of reqtools.library included.
+
+*****************************************************************************
+
+powerpacker.library written by Nico François (Yes, Nico is my first name :-)
+                    thanks to Moroder Andreas for the useful suggestions,
+                              Kai Bolay for writing the Oberon interface,
+                              Jan van den Baard for the Dice C libraries and
+                              Martin Steppler for the Aztec C libraries.
+
+
+(c) 1991/1992 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

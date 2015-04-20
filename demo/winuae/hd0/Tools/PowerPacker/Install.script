@@ -1,0 +1,65 @@
+
+FailAt 20
+
+Echo "*nPowerPacker 4.0a Libraries Installation Script*n"
+Version >NIL: LIBS:powerpacker.library
+If NOT ERROR
+	Echo "Version of powerpacker.library already installed:"
+	Version LIBS:powerpacker.library
+	Echo ""
+EndIf
+
+Ask "Install powerpacker.library version 35.274 ?"
+If WARN
+	Copy powerpacker.library LIBS:powerpacker.library
+	Echo "*npowerpacker.library 35.274 copied to your LIBS: directory."
+EndIf
+
+Echo ""
+Version >NIL: exec.library 37
+If NOT WARN
+	Echo "Your Amiga has Kickstart 2.0 (V37) or higher in ROM."
+	Ask "Install special AmigaDOS Release 2 version of reqtools.library ?"
+	If WARN
+		Copy kick20/reqtools.library LIBS:reqtools.library
+		Echo "*nreqtools.library V37 (2.0 version) copied to your LIBS: directory."
+		Skip INSTALLED
+	EndIf
+EndIf
+
+Copy kick13/reqtools.library LIBS:reqtools.library
+Echo "reqtools.library V37 copied to your LIBS: directory."
+
+Version >NIL: exec.library 37
+If NOT WARN
+	Skip INSTALLED
+EndIf
+
+Echo "*nCopying 'LoadPPLib' to your C: directory..."
+Copy LoadPPLib c:
+
+Echo "*nYour Amiga has Kickstart 1.2 or 1.3 in ROM."
+Echo "These versions have a few bugs that are fixed as of Kickstart 2.0."
+Echo "To circumvent these bugs it is important that your Amiga executes"
+Echo "the command 'LoadPPLib' each time it boots."
+Echo "Without this powerpacker.library may not operate correctly"
+Echo "and crunched commands saved with a library header may crash!*n"
+Echo "Shall I modify your 's:Startup-Sequence' so that it"
+Ask  "contains the 'LoadPPLib' command ?"
+If WARN
+	Echo >RAM:loadpplibtempfile "LoadPPLib"
+	Join RAM:loadpplibtempfile SYS:s/Startup-Sequence AS RAM:loadpplibtempfile2
+	Copy RAM:loadpplibtempfile2 SYS:s/Startup-Sequence
+	Delete RAM:loadpplibtempfile QUIET
+	Delete RAM:loadpplibtempfile2 QUIET
+Else
+	Echo "*nPlease modify your Startup-Sequence manually so that it contains"
+	Echo "the 'LoadPPLib' command."
+EndIf
+
+Lab INSTALLED
+
+Echo "*nInstallation complete.*n"
+
+Wait 5
+EndCLI >NIL:

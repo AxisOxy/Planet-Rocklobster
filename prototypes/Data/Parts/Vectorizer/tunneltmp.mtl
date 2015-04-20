@@ -1,0 +1,33 @@
+# Exported from Wings 3D 1.5.2
+newmtl 0x00
+Ns 0.0
+d 1.0
+illum 2
+Kd 0.26 0.45 0.40
+Ka 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+Ke 0.0 0.0 0.0
+newmtl 0x01
+Ns 0.0
+d 1.0
+illum 2
+Kd 0.37 0.58 0.51
+Ka 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+Ke 0.0 0.0 0.0
+newmtl 0x02
+Ns 0.0
+d 1.0
+illum 2
+Kd 0.48 0.71 0.62
+Ka 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+Ke 0.0 0.0 0.0
+newmtl 0x03
+Ns 0.0
+d 1.0
+illum 2
+Kd 0.59 0.84 0.73
+Ka 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+Ke 0.0 0.0 0.0

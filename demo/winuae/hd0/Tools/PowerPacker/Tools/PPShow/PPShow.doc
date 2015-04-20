@@ -1,0 +1,313 @@
+
+
+                            PPShow 2.0 User Manual
+
+                                 Sep 22, 1991
+
+
+
+Preface
+=======
+
+The programs and files in this distribution are freely distributable, but are
+also copyright (c) Nico François.  They may be freely distributed as long as
+no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+   PPShow 2.0 requires AmigaDOS Release 2 (Kickstart & Workbench 2.0) to run.
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+3. Features
+
+4. Note on crunching
+
+
+1. An introduction
+==================
+
+   PPShow was written to complement one of my other utilities, PowerPacker
+(a command and data cruncher).  It is used to show normal IFF ILBM files or
+ILBM files crunched with PowerPacker.  The decrunching is done automatically
+so the user doesn't have to know if a file is crunched or not.
+
+   PPShow uses 'powerpacker.library' and 'reqtools.library', so make sure
+these are present in your Libs: directory.  Double-click 'Install_libs' for
+an automatic installation.
+
+     If you haven't got PowerPacker you are of course missing one of the main
+features of this program.  PowerPacker is available as shareware (up to
+version 2.3b) or as a commercial program (version 4.0a).  The commercial
+version offers several enhancements like 40 to 50 times faster crunching,
+better crunching, overlay support and an ARexx port.
+
+
+2. Usage
+========
+
+   PPShow can be used in several different ways.
+
+- First of all via the CLI:
+
+   If you enter 'PPShow ?' you will get a standard AmigaDOS usage template,
+enter 'PPShow ??' for more information.  You use PPShow like this:
+
+   PPShow {<file|dir>} [LO] [HI] [SHI] [PROD] [L=LACE] [NL=NOLACE] [HAM]
+                       [TIME s] [NOCYCLE] [NO=NOOVERSCAN] [A2024 [15Hz]]
+                       [PAL] [NTSC] [VGA] [LOOP]
+
+   The program will by default load the specified ILBM file and display it.
+If the file was crunched using PowerPacker 2.0 or higher PPShow will first
+decrunch it for you.  If the file was encrypted you will be prompted for the
+password.  You may specify more than one file on the command line and you may
+even use wildcards, PPShow will show all files one at a time, double buffering
+the display.
+
+   If you enter PPShow without options, you will be presented with a
+filerequester.  Entering PPShow with a directory instead of a file as an
+argument will also get you a requester, but it will be positioned in the
+directory you specified.
+
+   There are several command line options:
+
+     LO         : Force screen to open in LORES        mode.
+     HI         :   ''    ''    ''   ''   HIRES         ''
+     SHI        :   ''    ''    ''   ''   SUPERHIRES    ''
+     PROD       :   ''    ''    ''   ''   PRODUCTIVITY  ''
+     LACE       : Force interlace on.
+     NOLACE     : Force interlace off.
+     HAM        : This switch is used to select HAM mode when no CAMG chunk
+                  is found.  If you don't specify this switch PPShow will
+                  assume a 6 plane screen is extra-halfbrite. Note that this
+                  switch does not force HAM mode, it merely instruct PPShow
+                  to use HAM mode in case of doubt.
+     TIME s     : Display pictures for 's' seconds.
+     NOCYCLE    : Do not start cycling automatically.
+     NOOVERSCAN : Disable overscan.
+     LOOP       : Display all pictures in a loop, press CTRL-D to abort.
+     PAL        : Use 'pal.monitor'.
+     NTSC       : Use 'ntsc.monitor'.
+     VGA        : Use 'multiscan.monitor'. Please note that when using VGA,
+                  LO puts the screen in EXTRALORES, HI in LORES and SHI in
+                  PRODUCTIVITY (same as PROD).
+     A2024      : Use 'a2024.monitor'.
+     15Hz       : Put A2024 monitor into 15Hz, rather than 10Hz.
+
+   PPShow can be made resident so it doesn't have to be loaded every time
+you use it, use the c: Resident command for this.  You can't make PPShow
+resident when it is crunched!!  The file is supplied as an uncrunched command
+file with the pure bit set.  PPShow is reentrant as well, so you can run it
+from several CLI's at the same time.  (Not that this is very useful, but it's
+possible :-)
+
+   Examples:
+
+    o PPShow dh0:pics/HAMpicWithoutCAMG.pic HAM
+
+    o PPShow dir/#?.pic TIME 5 LOOP
+
+       Show all files in directory 'dir' with a '.pic' suffix for 5 seconds
+       and loop until user presses CTRL-D.
+
+    o PPShow PICS:~(#?.info) NOOVERSCAN
+
+       Show all files on 'PICS:' NOT ending in '.info'. Disable overscan.
+
+
+- Via the WorkBench:
+
+   There are three different ways of using PPShow via the workbench: you
+can set the default tool of the (crunched) ILBM file to 'PPShow', you can
+single click the PPShow icon and then extend-select one or more picture icons
+(use shift click, double-clicking the last one) or you can double-click the
+PPShow icon and specify a filename using the filerequester.
+   You set the default tool by single clicking the icon of the picture and
+selecting 'Information' from the 'Icons' menu.  You will get a window with
+several gadgets in it, click in the string gadget where it says 'Default tool'
+and enter ':ppshow'.  PPShow should be in the root directory of your disk for
+this to work, if e.g.  it's in the system directory you should enter
+':system/ppshow'.  Last of all select the 'Save' gadget.
+
+   Following tooltypes are recognized by PPShow (in the pictures' icon, not
+PPShow's icon):
+
+     HAM        : See CLI option.
+     TIME=s     : Display picture for 's' seconds.
+     NOCYCLE    : Do not start cycling automatically.
+     NOOVERSCAN : Disable overscan.
+
+
+NOTE: - Follow these steps to make a simple slideshow that runs by double-
+        clicking an icon:  Make a script file containing something like the
+        following line: 'PPShow #?.pic TIME 10 LOOP'.  Set this script's
+        default tool to 'c:IconX' and enter 'WINDOW=CON://///AUTO' in its
+        tooltypes.  Put the script in a directory containing pictures (all
+        ending in '.pic'!).  If you now double-click this scripts icon the
+        slideshow will start, press ESC or CTRL-D to end.
+      - PPShow will add '.pp' to the filename when the file wasn't found.
+        This is very useful in the Workbench enviroment: you can make an
+        icon for 'house.pic' but name the file 'house.pic.pp'.  Now the
+        WorkBench will show an icon with 'house.pic' as name, but if you
+        doubleclick it 'house.pic.pp' will be displayed. (As long as there
+        is no 'house.pic' file in the directory!)
+      - Drag as many monitor icons to the WbStartup drawer as your monitor
+        allows.  For example: if you have a multiscan monitor drag pal, ntsc
+        and multiscan.monitor to your WbStartup drawer.  If you do this you
+        will have maximum ease of use of PPShow.
+
+
+3. Features
+===========
+
+   - Abort PPShow by pressing 'Q', CTRL-C or the right mouse button.  Press
+     CTRL-D to abort everything and to break a script.  The screen can be
+     dragged by pressing LEFT-AMIGA, holding down the left mouse button and
+     moving the mouse (you may have to press something else than LEFT-AMIGA,
+     depending on your 'IControl' preferences settings).
+
+   - PPShow offers full overscan and monitor support: PAL, NTSC, VGA, A2024.
+
+   - PPShow can be used as a simple slideshow tool.  It supports wildcards
+     to simplify this.
+
+   - Deluxe Paint color cycling is supported, press <TAB> to (de)activate.
+     Up to 8 cycles are supported (DPaint III currently only supports 6).
+
+   - The pesky little mouse will be removed while displaying.  Press 'M' to
+     toggle the mouse pointer on/off.
+
+   - Press 'L' to load another picture, you will be presented with the
+     filerequester.
+
+
+4. Note on crunching
+====================
+
+   A lot of IFF ILBM files are already crunched with the standard ByteRun1
+compression.  PowerPacker will crunch these files even further (most of the
+time) but will not crunch them as well as uncrunched ILBM files.  So save IFF
+files uncrunched (if you can, e.g. with PixMate) before crunching them, this
+way you will get the best crunching results.
+
+
+                        As always, I hope you find this program useful!
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.1
+
+     Decrunching is about 40% faster (accidently used slow decruncher in 1.0)
+     Screen now pops to front when picture is ready to be viewed, not before.
+     Filerequester used when arp.library is available.
+     'L' command added to load other pictures without restarting PPShow.
+
+*****************************************************************************
+VERSION 1.1a
+
+     The Guru isn't with me lately, after using a slow decruncher in 1.0
+       by accident I now used a fast but faulty decruncher in 1.1. It
+       sometimes didn't decrunch correctly, this has now been fixed. The
+       decruncher is still 40% faster than the 1.0 one. (and it's 2 bytes
+       shorter :^D )
+
+*****************************************************************************
+VERSION 1.2
+
+     Rewrote cycling routine in assembly, so less overhead when cycling.
+     Uses the all new powerpacker.library => shorter code.
+     Starting PPShow from the CLI with a directory as an argument now puts
+       up the requester positioned in that directory. Extremely useful once
+       you get used to this :^)
+     If you are running Workbench 2.0 PPShow will use the asl.library
+       instead of the arp.library (for the filerequester).
+     Fixed serious bug: memory wasn't freed when an IFF error occured.
+     No longer tries to display small brushes (intuition doesn't like very
+       small screens :( )
+
+*****************************************************************************
+VERSION 2.0
+
+     PPShow requires Kickstart 2.0 to run.  Sorry to all the 1.2 and 1.3
+       users, just consider this program as another reason to upgrade :-)
+
+     Filerequester from arp.library is no longer supported.
+     PPShow now uses reqtools.library (also by moi) for its requesters.
+       Among other things this means a much better filerequester than
+       before (with a buffer).  Asl is no longer used, sorry Commodore :-)
+     Printing of screen removed, has anybody ever used this ? :-)
+     Improved command line format, follows AmigaDOS standard. (old option
+       '-h' is no longer supported!).
+     IFF decrunching rewritten in assembly: much faster and shorter.
+     Shows pictures saved in DPaint with stencil on. In other words: supports
+       IFF picture masking.
+     No longer quits when you press any key, you have to press 'Q', CTRL-C,
+       or right mouse button; CTRL-D aborts PPShow and breaks scripts.
+     Color cycling is now automatically switched on (except for brushes).
+     Mouse pointer visibility can be toggled.
+     Possibility to automatically stop displaying after a specified number
+       of seconds.
+     Many new command line options: change display resolution, switch off
+       overscan, disable auto-cycling, etc.
+     Several options may be set using Workbench tooltypes.
+     From Workbench, if you single-click PPShow and shift double-click a
+       drawer icon, PPShow will open up the filerequester in that drawer.
+     If you use 'PPShow <file>' or extend-select <file> from Workbench and
+       you invoke the filerequester, it will be positioned in the directory
+       <file> is in.
+     The filerequester will appear on the picture screen if possible.
+     Canceling the filerequester no longer quits PPShow.
+     The filerequester will filter out the .info files.
+     Can be used as a simple slideshow program: supports wildcards and
+       multiple files on command line, also possible to loop the slideshow.
+       Picture switching is double buffered.  Multiple extended selection
+       from Workbench is also supported.
+     Overscan now done using Kickstart 2.0 display clips.
+     Supports all new ECS display modes (ECS Denise only) and all monitors.
+     Will switch to PAL or NTSC monitor automatically (ECS Agnus only).
+     PPShow will now show very large screens without problem, AUTOSCROLL is
+       switched on so the screen automatically scrolls when you move the
+       mouse pointer off the edge.
+     Screen no longer has an invisible dragbar.  Use meta-dragging (left
+       Amiga key + mouse) to drag the screen.
+     Directories are expanded to their full pathnames on startup.
+     PPShow now returns a returncode of 20 in case of an error or if ended
+       by CTRL-D.
+     Error reporting improved: when started from CLI, errors are printed
+       on the console; when started from Workbench, a requester is used.
+     All these great new features and PPShow grew only about 1K in size :-)
+
+*****************************************************************************
+
+PPShow 2.0 written by Nico François (Yes, Nico is my first name :-)
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever!
+

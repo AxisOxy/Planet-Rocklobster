@@ -1,0 +1,306 @@
+
+                      **********************************
+
+                          reqtools.library
+
+                          The requester toolkit.
+
+                          Release 1.0d
+
+                          (c) 1991/1992 Nico François
+
+                      **********************************
+
+
+   First of all read the DISTRIBUTION file for information on... er well...
+distribution :-)
+
+   If you have suggestions or remarks about ReqTools, or if you find any
+bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+Contents
+========
+
+1. An introduction
+
+2. Features
+
+3. Installation
+
+4. Using reqtools.library
+
+
+1. An introduction
+==================
+
+    reqtools.library is a standard Amiga shared, runtime library.  The purpose
+of ReqTools is to make it a lot quicker and easier to build standard requesters
+into your programs.  ReqTools is designed with Commodore's style guidelines in
+mind, all requesters have the look-and-feel of AmigaDOS Release 2.
+
+    If you use ReqTools in your programs you do not have to worry about
+requesters too much.  You'll have a lot more time to concentrate on the
+really important stuff your program does.
+
+    The library has been inspired by req.library (by Colin Fox & Bruce Dawson)
+and Commodore's own asl.library.  You will find it shares a lot of the
+features with these two libraries, while it has some additional ones as well.
+While asl.library was great in look-and-feel I felt it lacked quite a bit in
+the power department.  This power _is_ mostly available in req.library, but
+this doesn't fit in too well with AmigaDOS Release 2.  So the idea for a new
+requester library was born.
+
+    I tried to make all requesters in ReqTools very powerful, easy to use and 
+with a very nice new-look 3D interface.  Efficiency was also considered very
+important.  The 2.0 version of the library is about 20K large.  I'm sure you
+will agree this is not too much considering what ReqTools offers.
+
+    ReqTools features the following requesters:  a query requester, a string
+requester, a number requester, a file requester, a font requester and a
+palette requester.
+
+
+2. Features
+===========
+
+   The requesters have following features:
+
+   All requesters:
+
+    o have a pixel-perfect Workbench 2.0 3D look, also on Kickstart 1.3.
+    o adjust to interlaced screens and to the screen's font (rtEZRequest,
+      rtGetLong, rtGetString) or to any fixed-width font if the screen's font
+      is proportional (rtPaletteRequest, rtFileRequest or rtFontRequest).
+    o can appear under the mouse pointer, centered on the
+      screen/in a window or at the top left of the screen/a window.
+    o can be used asynchronously.
+    o check pr_WindowPtr of your process is to find the screen they should
+      appear on (can be overridden).
+    o use tags for maximum future extendibility.  All standard 2.0 tags are
+      supported (like TAG_SKIP, TAG_MORE, etc.).
+    o bring the screen they appear on to the front.  The screen that was
+      in front previously will be put in front again when the requester
+      finishes (if it is still open).
+    o will always appear in the visible portion of the screen (support of
+      virtual screens).
+    o are extensively tested using enforcer and mungwall debugging tools.
+
+   rtEZRequest, the query requester:
+
+    o easy keyboard shortcuts:
+      - Left Amiga V and Left Amiga B (like the standard requesters).
+      - Y for positive response.
+      - N, R, Esc for negative response.
+      - Return can also be used as a shortcut and can be
+        associated with any response.  The gadget in question
+        will have its text printed bold.
+        Default response for Return is the positive response.
+      - buttons give visual feedback when keyboard shortcuts
+        are used.
+      - keyboard shortcuts can be canceled by pressing Shift
+        before releasing the key.
+    o number of responses only limited by screen width.
+    o allows for multiple lines of text.
+    o text can be centered in requester (great for about requesters).
+    o supports the use of 'printf' formatting codes in text
+      and in responses.
+    o can be terminated by IDCMP events.
+
+   rtFileRequest, the file requester:
+
+    o similar in use and look-and-feel as Asl file requester.
+    o buffers directories in memory.
+    o files and directories can be added or removed from the buffer
+      by the calling program.
+    o can be put in save mode, disabling double-clicks and asking you if
+      directories that can't be found (entered manually) should be created.
+    o optional callback hook for verification of files before they are
+      added to the buffer.
+    o supports multiple selection of files and optionally of directories.
+    o when multi-select is on All, Clear and Match.. buttons are available.
+      All selects, and Clear unselects all files.  Match.. brings up a
+      requester where the user can enter a pattern to select files.
+    o can be used as a directory requester (showing no files).
+    o optional pattern gadget to match files on.
+    o shows all devices (with volume names) and all assigns made.
+    o supports TABCYCLE under 2.0
+    o pattern matching supports _ALL_ AmigaDOS 2.0 patterns.
+
+   rtFontRequest, the font requester:
+
+    o buffers all fonts in memory.
+    o shows sample of font you click on.
+    o can be also be used to select the font's style.
+    o supports color fonts, can change the screen's palette.
+    o supports scaled fonts (AmigaOS Release 2 only).
+    o optional callback hook for verification of fonts before they are
+      added to the buffer.
+    o supports TABCYCLE under 2.0
+
+   rtPaletteRequest, the palette requester:
+
+    o features Copy, Swap and Spread functions.
+    o current values of red, green and blue are displayed.
+    o returns the selected color.
+
+   rtGetLong, the long integer requester:
+
+    o width of requester can be set by caller.
+    o a minimum and maximum can be supplied and will be displayed
+      in the requester.
+    o a value to show up when the requester appears can be supplied.
+
+   rtGetString, the string requester:
+
+    o width of requester can be set by caller.
+    o a string to show up when the requester appears can be supplied.
+
+
+3. Installation
+===============
+
+   To install reqtools.library copy it to your Libs: directory by hand, or
+run the installation script 'Install' (by using 'Execute' from the Shell or
+by double-clicking its icon).
+
+   reqtools.library is provided in two versions (that are 100% equivalent):
+one for Kickstart 1.2 (or higher) and one for Kickstart 2.0 and higher.
+
+   The version for Kickstart 2.0 uses 2.0 ROM functions for stuff like
+pattern matching, parsing tags, the 3D look, while a lot in the Kickstart 1.3
+version is emulated.  It is therefore suggested you use the 2.0 version of
+the library if you have Kickstart 2.0 in ROM.
+
+
+4. Using reqtools.library
+=========================
+
+   If you are a C programmer all you need to do is include the correct
+headers and open reqtools.library. After that you can use the functions in
+the library as if they were C functions. If your program quits it must of
+course close the library again.  See 'demo.c' for an example.
+
+   If you are using SAS/C 5.10a and you don't want to use pragmas, or if you
+are using version 4.0 or lower, you must link with LIB:reqtools.lib (small
+code) or LIB:reqtoolsnb.lib (large code).
+
+   From ReqTools 1.0c onwards Dice C is also supported.  You can find two
+libraries to link with in the dlib directory.  Link with reqtoolss.lib
+(standard args) or reqtoolssr.lib (registerized args).
+
+   From ReqTools 1.0d onwards interfaces to Modula-2 and to Aztec C are also
+included.  You can find the files in the Modula2 (with documentation) and
+Aztec directories.
+
+   Note that the functions allowing a variable number of arguments can't
+be called using pragmas.  So if you use these you must always link with
+LIB:reqtools.lib or LIB:reqtoolsnb.lib.
+
+   Assembly programmers should also include the correct files and open
+reqtools.library.  To call a function they must load A6 with the library base,
+put the arguments in the appropriate registers and jump to the library vector
+offset of the function they want to call.
+
+   All library functions are explained in the autodoc file 'reqtools.doc'.
+
+                                                       Enjoy.
+
+
+                               LIBRARY HISTORY:
+
+*****************************************************************************
+RELEASE 1.0 (Library version 37.556 [1.3] - 37.670 [2.0])
+
+    First release.
+
+*****************************************************************************
+RELEASE 1.0a (Library version 37.557 [1.3] - 37.673 [2.0])
+
+    Fixed two minor bugs:
+      - if a directory could not be found and you re-invoked the file
+        requester it wouldn't check the directory again.
+      - devices like PRT:, CON:, etc. now no longer show up in the device
+        list of the 2.0 file requester.
+
+*****************************************************************************
+RELEASE 1.0b (Library version 37.566 [1.3] - 37.678 [2.0])
+
+    Fixed bug: entering a pattern when a file requester's directory was
+      invalid could cause a crash.
+    rtGetString() and rtGetLong() 2.0 requester windows no longer have close
+      gadgets.
+    Font requester entries are "release verify" instead of "immediate".
+    If no minimum or maximum is given for the GetLong requester it will not
+      be displayed (1.0 and 1.0a displayed MAXINT or MININT).
+    Minor cosmetic adjustments to file, font and palette requesters.
+    Oberon interface to the library included.
+
+*****************************************************************************
+RELEASE 1.0c (Library version 37.592 [1.3] - 37.718 [2.0])
+
+    Boopsi dispatch function for rtEZRequestA() buttons optimized (ReqTools
+      for Kickstart 2.0).  Occasional flicker just about eliminated.
+    Enlarged buttons a bit in rtGetLongA(), rtGetStringA() and the file, font
+      and palette requesters.
+    Width of scroller gadget in file requester window increased.
+    File string gadget is cleared when 'All' or 'Match..' is used.  This
+      wasn't done before and could result in unexpected multi-select results.
+    Visual feedback for keyboard shortcuts improved (rtEZRequestA()).  Button
+      stays depressed as long as the key in question is held down, but still
+      for a minumum of 1/10 sec.  New feature:  shortcuts can be canceled by
+      pressing Shift before releasing the key.
+    Minor bug fix: keyboard shortcuts V and B now really only work together
+      with the Left Amiga key.  Used to work without the qualifier.
+    rtEZRequestA(), rtGetLongA() and rtGetStringA() will no longer call the
+      DOS function Delay(), so they may from now on be called by tasks.
+      Every ReqTools requester, except the file and font requesters (they use
+      DOS for obvious reasons), can be called from a task.
+    EZRequest with only one button now responds to the Return key, whether
+      EZREQF_NORETURNKEY is set or not.
+    Fixed small bug in libraries/reqtools.i include file.  rtfi_Hook and
+      rtfo_Hook were followed by a ; and this could lead to problems.
+    Libraries (reqtoolss.lib and reqtoolssr.lib) for Dice C included.
+    Pre-release (0.91ß) of RTPatch patcher program included.
+
+*****************************************************************************
+RELEASE 1.0d (Library version 37.600 [1.3] - 37.726 [2.0])
+
+    rtEZRequestA(), rtGetStringA() and rtGetLongA() now switch the processor
+      stack to ensure sufficient stack space for the function to succeed.
+    Fixed bug in rtGetLong() requester in 2.0 version of ReqTools.  Used to
+      return TRUE and a random value if the user pressed Ok when the integer
+      gadget was empty.
+    File requester is somewhat larger by default.
+    Improved automatic requester resizing (if requester would become too big
+      for the screen).
+    File requester (in save mode) no longer asks "Create drawer?" when you
+      entered a drawer string containing a non-existing volume (e.g. 'FOO:').
+    Entries in file requester are now sorted immediately when you select the
+      slider gadget and not when you release it (1.3 version of ReqTools).
+    Latest revision of Oberon interface included.
+    Modula-2 interface to the library included.
+    Aztec C interface to the library included.
+
+*****************************************************************************
+
+reqtools.library written by Nico François (Yes, Nico is my first name :-)
+                 thanks to Kai Bolay for writing the Oberon interface,
+                           Frank Lömker for writing the Modula-2 interface,
+                           Jan van den Baard for writing the Dice libraries,
+                           Martin Steppler for writing the Aztec C libraries,
+                           Federico Giannici for the useful suggestions.
+
+
+(c) 1991/1992 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

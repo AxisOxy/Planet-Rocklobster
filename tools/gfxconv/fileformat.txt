@@ -1,0 +1,42 @@
+normal image:
+-------------
+
+word - numcolors
+
+word - bitplane-width in bytes
+
+word - bitplane-size in bytes
+
+long - image-size (all bitplanes) in bytes
+
+numcolors
+{
+	word - palette
+}
+
+image-size
+{
+	byte - bitplanes
+}
+
+
+fli-image:
+----------
+
+word - numcolors
+
+word - bitplane-width in bytes
+
+word - bitplane-size in bytes
+
+long - image-size (all bitplanes) in bytes
+
+image-height
+{
+	short[] - palette for the image-line (-1 signals end of line)
+}
+
+image-size
+{
+	byte - bitplanes
+}

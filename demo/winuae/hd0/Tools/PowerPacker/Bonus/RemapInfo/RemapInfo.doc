@@ -1,0 +1,136 @@
+
+
+                          RemapInfo 1.1 User Manual
+
+                                 Feb 2, 1992
+
+
+
+Preface
+=======
+
+   The programs and files in this distribution are freely distributable, but
+are also Copyright (c) Nico François.  They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+
+1. An introduction
+==================
+
+     This program was written out of utter frustration (as many good programs
+are :-)  Commodore has decided to change the colors of the new Workbench 2.0
+compared to 1.3.  Black and white are reversed!  So what's the problem you may
+ask ?  Well, icon images with black and white swapped look fairly ugly!
+
+     I know of two other programs that allow you to recolor the icons so they
+look ok again, but neither of these programs features a Workbench interface!
+Quite extraordinary if you ask me, a program that helps to make your Workbench
+look nicer, but doesn't support it ?!?
+
+     So there you have it, that's why you are now reading the documentation of
+RemapInfo, the icon color remapper with an easy to use Workbench interface.
+
+     RemapInfo is not just useful to Workbench 2.0 users, but also to people
+who want to use icons designed for 2.0 on Workbench 1.3.  There are also many
+people who have changed their Workbench 1.3 colors completely and it is very
+possible that by using this program they may discover that they can enhance
+their Workbench look significantly.
+
+     RemapInfo is compatible with and supports Kickstart & Workbench 2.0.
+
+
+2. Usage 
+========
+
+     RemapInfo can be used in several different ways.
+
+- First of all via the CLI:
+
+     If you enter 'RemapInfo ?' you will get a short usage message printed
+to the console.  You use RemapInfo like this:
+
+     RemapInfo [<file|dir>...]
+
+     So simply give one or more filenames of icons you want to recolor as
+arguments to RemapInfo.  There is no need to include the '.info'.
+
+     Example:   'RemapInfo SYS:System SYS:Utilities/Clock.info'
+
+     If you enter RemapInfo without arguments and you have arp.library or
+asl.library installed in Libs: you will be presented with a file requester.
+
+- Via the WorkBench:
+
+     This is definately the easiest way to use RemapInfo, the CLI interface
+was only implemented for completeness.
+
+     There are two ways ways of using RemapInfo via the workbench:  you can
+simply double-click the RemapInfo icon and select a filename using the Arp
+or Asl file requester or, and this is certainly the easiest way: you can
+single click the RemapInfo icon and then extend-select one or more other
+icons (use shift click, double-clicking the last one).  RemapInfo will then
+proceed and recolor each of the icons you selected.
+
+     If your Amiga has Kickstart 2.0 in ROM there is an even easier way to use
+RemapInfo:  When you double-click RemapInfo you will NOT be presented with a
+file requester but with an additional icon in the Workbench window.  If you
+now drop some other icons on this icon these will be recolored.  Couldn't be
+easier now, could it :-)  Double-clicking the icon brings up a requester
+asking you if you want to quit RemapInfo.
+
+
+                           As always, I hope you find this program useful!
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.1
+
+     No longer opens anoying window when started from Workbench (unless there
+       are errors of course).
+     If you double-click the RemapInfo_1.1 icon RemapInfo will ask you if you
+       want to quit or keep running.
+     RemapInfo now remaps ALL icons, also those with more than 4 colors!
+
+*****************************************************************************
+
+RemapInfo 1.1 written by Nico François (Yes, Nico is my first name :-)
+
+
+"I'm so happy 'cause today
+ I found my friends where in my head" - Nirvana
+
+
+(c) 1991/1992 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

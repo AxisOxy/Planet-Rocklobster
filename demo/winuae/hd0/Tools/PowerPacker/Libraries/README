@@ -1,0 +1,10 @@
+
+   To save disk space the library packages in the pplib and
+   reqtoolslib directory are archived with LhArc.
+
+   You will need LhArc to decompress these archives.  LhArc is a
+   freely distributable program and can be found on Fish disk 312.
+
+   The library packages include full documentation to powerpacker.library
+   and reqtools.library with autodocs and include files.
+

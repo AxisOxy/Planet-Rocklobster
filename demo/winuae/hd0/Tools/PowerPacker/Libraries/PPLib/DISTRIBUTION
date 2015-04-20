@@ -1,0 +1,76 @@
+
+                      **********************************
+
+                          powerpacker.library V35.274
+
+                          Release 1.4
+
+                          (c) 1991/1992 Nico François
+
+                      **********************************
+
+   The programs and files in this distribution are freely distributable, but
+are also Copyright (c) Nico François. They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+
+    The complete PPLib package contains following files:
+
+    Aztec (dir)
+        pp.lib
+        ppnb.lib
+    dlib (dir)
+        DMakeFile
+        powerpackers.lib
+        powerpackersr.lib
+        README
+    doc (dir)
+        pplib.doc
+    fd (dir)
+        powerpacker_lib.fd
+    include (dir)
+        clib (dir)
+            powerpacker_protos.h
+        libraries (dir)
+            powerpacker_lib.i
+            ppbase.h
+            ppbase.i
+        pragmas (dir)
+            powerpacker.h
+        proto (dir)
+            powerpacker.h
+    kick13 (dir)
+        reqtools.library
+    kick20 (dir)
+        reqtools.library
+    lib (dir)
+        pp.lib
+        ppnb.lib
+        README
+        Source.lzh
+    Oberon (dir)
+        Example.mod
+        PowerPacker.mod
+    DISTRIBUTION
+    README
+    Install
+    Install.script
+    example.asm
+    example.c
+    powerpacker.library
+    LoadPPLib
+
+    All of these files (except example.c, example.asm and Example.mod) must
+remain unmodified and are copyrighted by the author.  None of these files may
+be distributed on its own, the entire package must be distributed as one
+whole.  Example.c, example.asm and Example.mod are full public domain and can
+be used in any way you like :-)
+
+    There is one exception to the above.  If your program is freely
+distributable and uses powerpacker.library you have permission to include
+powerpacker.library with your distribution.  Your program's documentation
+should state that your program uses powerpacker.library and that the library
+is Copyright (c) Nico François.
+
+    powerpacker.library cannot be included with commercial distributions
+without written permission from the author.
+

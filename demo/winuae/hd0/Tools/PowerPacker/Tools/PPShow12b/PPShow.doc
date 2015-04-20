@@ -1,0 +1,219 @@
+
+
+                            PPShow 1.2 User Manual
+
+                                 Sep 28, 1991
+
+
+
+Preface
+=======
+
+   The programs and files in this distribution are freely distributable, but
+are also copyright (c) Nico François.  They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+3. Features
+
+4. Note on crunching
+
+
+1. An introduction
+==================
+
+     PPShow was written to complement one of my other utilities, PowerPacker
+(a command and data cruncher).  It is used to show normal IFF ILBM files or
+ILBM files crunched with PowerPacker.  The decrunching is done automatically
+so the user doesn't have to know if a file is crunched or not.
+
+     PPShow uses 'powerpacker.library' and 'reqtools.library', so make sure
+these are present in your Libs: directory.  Double-click 'Install_libs' for
+an automatic installation.
+
+     If you haven't got PowerPacker you are of course missing one of the main
+features of this program.  PowerPacker is available as shareware (up to
+version 2.3b) or as a commercial program (version 4.0a).  The commercial
+version offers several enhancements like 40 to 50 times faster crunching,
+better crunching, overlay support and an ARexx port.
+
+
+2. Usage
+========
+
+     PPShow can be used in four different ways.
+
+- First of all via the CLI:
+
+     If you enter PPShow without arguments you will get a usage template.
+You use PPShow like this:
+
+     PPShow [-h] [<file|dir>]
+
+     The program will then load the ILBM file and display it.  If the file
+was crunched using PowerPacker 2.0 or higher PPShow will first decrunch it
+for you.  If the file was encrypted you will be prompted for the password.
+     If you enter PPShow without options, you will be presented with a file
+requester.  Entering PPShow with a directory instead of a file as an argument
+will also get you a file requester, but it will be positioned in the directory
+you specified.
+     There is only one option in this version: '-h'.  This option is used to
+force HAM mode when no CAMG chunk is found.  If you don't specify this option
+PPShow will assume a 6 plane screen is extra half brite. (Note that it is
+wrong for an Amiga IFF ILBM file not to have a CAMG chunk, especially when
+there can be doubt about what display mode to pick !)
+     PPShow can be made resident so it doesn't have to be loaded every time
+you use it, use the ARP ARes command or the c: Resident command for this.
+You can't make PPShow resident when it is crunched !!  The file is supplied
+as an uncrunched command file with the pure bit set.  PPShow is reentrant as
+well, so you can run it from several CLI's at the same time. (Not that this
+is very useful, but it's possible :-D)
+
+     Example:       '1> PPShow -h dh0:pics/HAMpicWithoutCAMG.pic'
+
+- Via the WorkBench:
+
+     There are three different ways of using PPShow via the workbench: you
+can set the default tool of the (crunched) ILBM file to 'PPShow', you can
+single click the PPShow icon and then double click the picture icon or you
+can double-click the PPShow icon and enter the filename in the string gadget
+you will be presented with.
+     You set the default tool by single clicking the icon of the picture
+and selecting 'Info' from the workbench menu.  You will get a window with
+several gadgets in it, click in the string gadget where it says 'Default
+tool' and enter ':ppshow'.  PPShow should be in the root directory of your
+disk for this to work, if e.g. it's in the system directory you should enter
+':system/ppshow'.  Last of all select the 'Save' gadget.
+
+NOTE: - PPShow will add '.pp' to the filename when the file wasn't found.
+        This is very useful in the WorkBench enviroment: you can make an
+        icon for 'house.pic' but name the file 'house.pic.pp'.  Now the
+        WorkBench will show an icon with 'house.pic' as name, but if you
+        doubleclick it 'house.pic.pp' will be displayed. (As long as there
+        is no 'house.pic' file in the directory !)
+
+
+3. Features
+===========
+
+   - PPShow uses the file requester of reqtools.library.
+
+   - Abort PPShow by pressing any key (except <TAB> or 'P') or the right
+     mouse button.  The screen can be dragged by an invisible drag bar at
+     the top.
+
+   - The pesky little mouse will be removed while displaying.
+
+   - PPShow offers full overscan support, PAL or NTSC.  As far as I know
+     this is the first ILBM viewing program to do so, looks like PAL Amiga
+     owners still get forgotten.  All Amiga display modes (like HAM, EHB)
+     are of course also supported.
+
+   - Deluxe Paint cycling is supported, press <TAB> to (de)activate.  Up to
+     8 cycles are supported (DPaint III currently only supports 6).
+
+   - PPShow has the ability to print the screen it is displaying, all you
+     have to do is press 'P' on the keyboard and wait.  The mouse pointer
+     will be visible while printing.  Please note that the printer.device has
+     to be in the 'devs:' directory for PPShow to be able to print, you
+     should also have a correct system-configuration for your printer.
+
+   - Press 'L' to load another picture, you will be prompted for a filename.
+
+
+4. Note on crunching
+====================
+
+     A lot of IFF ILBM files are already crunched with the standard ByteRun1
+compression.  PowerPacker will crunch these files even further (most of the
+time) but will not crunch them as well as uncrunched ILBM files.  So save IFF
+files uncrunched (if you can, e.g. with PixMate) before crunching them, this
+way you will get the best crunching results.
+
+
+                      As always, I hope you find this program useful !
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.1
+
+     Decrunching is about 40% faster (accidently used slow decruncher in 1.0)
+     Screen now pops to front when picture is ready to be viewed, not before.
+     Filerequester used when arp.library is available.
+     'L' command added to load other pictures without restarting PPShow.
+
+*****************************************************************************
+VERSION 1.1a
+
+     The Guru isn't with me lately, after using a slow decruncher in 1.0
+       by accident I now used a fast but faulty decruncher in 1.1. It
+       sometimes didn't decrunch correctly, this has now been fixed. The
+       decruncher is still 40% faster than the 1.0 one. (and it's 2 bytes
+       shorter :^D )
+
+*****************************************************************************
+VERSION 1.2
+
+     Rewritten cycling routine in assembly, so less overhead when cycling.
+     Uses the all new powerpacker.library => shorter code.
+     Starting PPShow from the CLI with a directory as an argument now puts
+       up the requester positioned in that directory. Extremely useful once
+       you get used to this :^)
+     If you are running Workbench 2.0 PPShow will use the asl.library
+       instead of the arp.library (for the filerequester).
+     Fixed serious bug: memory wasn't freed when an IFF error occured.
+     No longer tries to display small brushes (intuition doesn't like very
+       small screens :( )
+
+*****************************************************************************
+VERSION 1.2a
+
+     Seemed that the asl requester no longer worked on the latest
+       Kickstart 2.0 (release V37). Fixed.
+     Asl requester doesn't show '.info' icon files.
+
+*****************************************************************************
+VERSION 1.2b
+
+     Asl and Arp requester removed.
+     PPShow now uses the ReqTools file requester from reqtools.library.
+     Canceling the file requester will no longer load the last picture
+       again.
+
+*****************************************************************************
+
+PPShow 1.2b written by Nico François (Yes, Nico is my first name :-)
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

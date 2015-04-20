@@ -1,0 +1,322 @@
+
+
+                          PowerSnap 1.1 User Manual
+
+                                 Aug 19, 1991
+
+
+
+›1mPreface›0m
+›1m=======›0m
+
+     The programs and files in this distribution are freely distributable,
+but are also Copyright (c) Nico François.  They may be freely distributed as
+long as no more than a nominal fee is charged to cover time and copying costs.
+     No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+     The above is generally known as freeware.
+
+     If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+     Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+›1mContents›0m
+›1m========›0m
+
+1. An introduction
+
+2. Installation
+
+3. CLI usage
+
+4. Workbench usage
+
+5. Features
+
+
+›1m1. An introduction›0m
+›1m==================›0m
+
+     Snap, snap, snap, snap, eggs and snap :-)  Ahem...
+
+     PowerSnap is a utility that allows you to use the mouse to mark
+characters anywhere on the screen and paste them somewhere else, like in the
+CLI or in a string gadget.  PowerSnap will check what font is used in the
+window you snap from and will look for the position of the characters
+automatically.  It recognizes all non proportional fonts of up to 24 pixels
+wide and of any height so this should cover most fonts used.  Snapping and
+pasting text is done using the mouse, making PowerSnap fast and easy to use.
+     To try PowerSnap out, double-click its icon to install the handler, move
+the mouse over a character on the screen, press the left ALT key and while
+keeping this pressed press the left mouse button.  After a short delay
+(depends on how big the font is) PowerSnap will either flash the screen,
+indicating it hasn't found a character at this position (it is possible
+PowerSnap didn't look for the correct font), or the character you are pointing
+at will be selected.  Move the mouse while keeping the left ALT key and the
+mouse button down to select more characters.  Once you are satisfied with what
+you have selected release the left ALT key.  You can now insert the text you
+have just snapped by pressing either left ALT + V or left ALT + right mouse
+button.
+     Both the left ALT and the 'V' keys mentioned in this short explanation
+are user-definable (see below).  Also, don't start snapping on a space because
+PowerSnap will almost certainly get the character positions wrong.  You CAN
+start snapping on a space if you have already snapped in the window.
+
+
+›1m2. Installation›0m
+›1m===============›0m
+
+     To install PowerSnap automatically run the installation script.  Install
+manually by copying 'PowerSnap' and 'PowerSnap.info' to your C: directory and
+'powersnap-handler' to your L: directory.  'powersnap-handler' does not have
+to be in L: but it is best if you put it there, PowerSnap will also find it
+if it is in the current directory.
+     If you want PowerSnap to be part of your initial startup (so you always
+have the comfort of snapping anything anywhere :-) you should put a simple
+line saying 'PowerSnap' before the 'EndCLI >NIL:' in your startup-sequence.
+If you wish to specify options include these on the same line, like e.g.
+'PowerSnap COLOR 2'.  To disable the copyright message redirect output to NIL:
+like in 'PowerSnap >NIL:'.
+     Workbench 2.0 users have the following extra possibility:  drag the
+PowerSnap icon into the WbStartup drawer of your boot disk/partition.  And
+that's all there is to it.  Specify options in the icon's tooltypes.  If you
+do it this way you don't have to change your startup-sequence.
+
+
+›1m3. CLI usage›0m
+›1m============›0m
+
+     Enter 'PowerSnap ?' for a CLI usage template:
+
+     ›1mPowerSnap 1.1›0;32m © Nico François›0m
+     Usage: PowerSnap [QUAL qual] [SLQUAL qual] [PASTEKEY char] [PRIORITY n]
+                      [COLOR 1-3] [PAQUAL qual] [PREPEND str] [APPEND str]
+                      [SNAPCHARS] [SNAPFRAME] [[NO]JOIN] [[NO]XEROX]
+         or PowerSnap LIST
+         or PowerSnap QUIT
+
+     Explanation of the options:
+
+     QUAL qual   : Set snap qualifier (qual, default: LALT).
+                   This is the qualifier that must be down when you press
+                   the left mouse button to start snapping.  This is also the
+                   qualifier for inserting the snapped text.  There are two
+                   ways to insert snapped text: using the pastekey or using
+                   the right mouse button.
+     SLQUAL qual : Set single line qualifier (qual, default: LALT+LSHIFT).
+                   When this qualifier is down and you insert snapped text
+                   everything will be put on one single line.  All whitespace
+                   (spaces and newlines) between words will be changed to a
+                   single space.  Very useful for inserting a lot of filenames
+                   from a directory for example.
+     PASTEKEY c  : Set pastekey (character, default: V).
+                   This key is used to insert the snapped text.  Insertion
+                   will follow when it is pressed with on of the three
+                   possible qualifiers down (QUAL, SLQUAL, PAQUAL).
+     PRIORITY n  : Set priority of inputhandler (dec, default: 55).
+                   Priority of input handler (should always be > 50).
+     SNAPCHARS   : Start with character snap (default).
+     SNAPFRAME   : Start with frame snap.
+                   PowerSnap has two snap modes: character and frame.  The
+                   easiest to explain is frame snap, you just draw a rectangle
+                   and everything inside it will be snapped.  Character snap
+                   will interpret the screen as lines of text (like an editor)
+                   and will snap accordingly.
+     [NO]JOIN    : Join mode on/off (default: on).
+                   Tells PowerSnap if it's ok to join two lines to a single
+                   long line when the first line has a non blank character
+                   as its last character.  This only works when you are using
+                   character or word snap.  Default is JOIN.
+     [NO]XEROX   : Xerox insert mode on/off (default: off).
+                   When xerox mode is on snapped text will be inserted
+                   immediately when you stop snapping.  Default is NOXEROX.
+     COLOR 1-3   : Set color of select box (1-3, default: 1).
+                   This sets the color of the complemented characters.
+                   Try all three and see what you like best.
+     PAQUAL qual : Set pre-/append qualifier (qual, default: LALT+CONTROL).
+                   When using this qualifier to insert snapped text a string
+                   will be prepended to each line and one will be appended.
+     PREPEND str : Set prepend string (default: "> ").
+                   Use this to set the string that will be prepended when you
+                   paste with the PAQUAL down.  This string can be up to 15
+                   characters long.  To enter a '"' in the string escape it
+                   with a '*'.  E.g. 'PowerSnap PREPEND " *" "'.
+     APPEND str  : Set append string (default: empty).
+                   Use this to set the string that will be appended when you
+                   paste with the PAQUAL down.  Can be up to 15 characters.
+
+     Following qualifiers are recognized:
+
+         LSHIFT          Left shift key
+         RSHIFT          Right shift key
+         CONTROL         Control key
+         LALT            Left alt key
+         RALT            Right alt key
+         LCOMMAND        Left Amiga key
+         RCOMMAND        Right Amiga key
+         MIDBUTTON       Middle mouse button (if you have one :-)
+
+     Or any combination of these (separate the qualifiers by a non-alpha
+character like a '+', '-' or '|'), e.g. 'LALT+LSHIFT' or 'LALT-LSHIFT'.
+
+     You may run PowerSnap again once it has been installed to change the
+settings.  Enter 'PowerSnap LIST' for a list of current settings.
+     'PowerSnap QUIT' will remove the handler from memory.
+
+     Examples:
+
+        o PowerSnap PREPEND "Type " APPEND " OPT N"
+
+         When you paste some text 'Type ' will be inserted before each line
+         and ' OPT N' after.  If you e.g. snap 'PowerSnap.c' and press
+         LALT-CTRL-V the following will be inserted: 'Type PowerSnap.c OPT N'
+
+        o PowerSnap QUAL LSHIFT+RSHIFT+CONTROL
+
+         This sets the snap qualifier to both shift keys plus the control
+         key.  This is a rather silly example because unless your name is
+         Zaphod Beeblebrox or you are very good at doing things with your
+         feet it is quite impossible to snap anything with this qualifier :^)
+
+        o PowerSnap PASTEKEY i
+
+         Sets the insert key to 'I' instead of 'V'.  So pressing LALT-I
+         will feed the text in the clipboard to the keyboard.
+
+NOTE: - You can toggle between character/frame snap once you have started
+        snapping.  Just keep the left mouse pressed down while you click the
+        right one.  Be careful, if you don't keep the left button pressed
+        you will insert the text you have marked.
+      - PowerSnap has the ability to do word oriented snapping.  To activate
+        this double-click the left mouse button when you start snapping.  Note
+        that word snapping forces character snapping and frame snapping is no
+        longer possible.
+      - Press the left mouse button while PowerSnap is inserting to abort.
+
+
+›1m4. Workbench usage›0m
+›1m==================›0m
+
+     PowerSnap recognizes the following tooltypes (see CLI options for a more
+complete explanation):
+
+     QUAL=qual   : Set snap qualifier (qual, default: LALT).
+     SLQUAL=qual : Set single line qualifier (qual, default: LALT+LSHIFT).
+     PASTEKEY=c  : Set pastekey (character, default: V).
+     PRIORITY=n  : Set priority of inputhandler (dec, default: 55).
+     SNAPCHARS   : Start with character snap (default).
+     SNAPFRAME   : Start with frame snap.
+     COLOR=1-3   : Set color of select box (1-3, default: 1).
+     JOIN        : Join mode on (default).
+     NOJOIN      : Join mode off.
+     XEROX       : Xerox insert mode on.
+     NOXEROX     : Xerox insert mode off (default).
+     PAQUAL=qual : Set pre-/append qualifier (qual, default: LALT+CONTROL).
+     PREPEND=str : Set prepend string (default: "> ").
+     APPEND=str  : Set append string (default: empty).
+                   Do NOT put quotes around the pre-/append string.
+     QUIET       : Don't open window informing PowerSnap has been installed
+                   or removed.  Useful for people who wish to put PowerSnap
+                   in their WbStartup drawer (Workbench 2.0 only).
+
+     Select PowerSnap's icon and choose 'Information' from the 'Icons' menu
+(Workbench 2.0) or 'Info' from the 'Workbench' menu (Workbench 1.3).  You can
+now edit PowerSnap's tooltypes, check your manual for more information.
+     Run PowerSnap twice to remove it from memory.
+
+NOTE: - Workbench 1.2/1.3 users MUST always include an '=' in a tooltype.
+        So instead of entering "XEROX" to switch on xerox insert mode, you
+        must insert "XEROX=".  Workbench 2.0 no longer has this limitation.
+
+
+›1m5. Features›0m
+›1m===========›0m
+
+     o Fully supports the clipboard.device.  You can use snapped text in all
+       other programs that supports the clipboard.device.
+
+     o Snaps all printable characters, from ' ' (32) to 'ÿ' (255).
+
+     o Supports all keymaps.
+
+     o Uses a relatively small handler that is about 7.4K long.  PowerSnap
+       uses less than 12K of memory once it is installed (excluding memory
+       used by the clipboard.device).
+
+     o Recognizes all non-proportional fonts to up to 24 pixels wide and of
+       any height.  Also recognizes scaled fonts (Workbench 2.0).
+
+     o Recognizes plain, underlined, bold, inverse, bold underlined, inverse
+       underlined, inverse bold and inverse bold underlined characters :-)
+
+     o Works with fonts with kerning data (like the courier.font supplied
+       with Workbench 2.0).
+
+     o Will remember character positions in up to 8 windows.  Once you have
+       snapped in a window the initial character position will be found
+       immediately and you may also start snapping on spaces.
+
+     o Joins long lines.
+
+     o Pre-/appends strings and has a neat single-line insert mode :-)
+
+     o Supports a middle mouse button if one exists.  Using the middle button
+       as qualifier gives the possibility to snap/paste without touching the
+       keyboard!
+
+     o Inputhandler is written in assembly for lowest possible overhead.
+
+     o AmigaDOS Release 2 compatible (Kickstart & Workbench 2.0).
+
+
+                                                 As always, enjoy !
+
+
+                              PROGRAM HISTORY:
+
+******************************************************************************
+VERSION 1.0
+
+     First release.
+
+******************************************************************************
+VERSION 1.1
+
+     Fixed bug in reading from clipboard.  Strange things could happen if the
+       clipboard did not contain text. Unknown clips are properly ignored now.
+     Incompatibility with 'ConClip' (Workbench 2.0, V37) resolved.
+     Default COLOR changed to 1.
+     Version string embedded for Workbench 2.0 'Version' command.
+     To put the record straight:  PowerSnap is not a modified version of
+       Snap (by Mikael Karlsson).  It is a completely different program
+       that does most of the things Snap does.  A lot of the features and
+       ideas in PowerSnap were influenced by (read stolen from :-) Snap
+       though.  I just thought I'd mention this because some German magazine
+       almost convicted me for plagiarism, oh boy :^D
+     The Amiga would hang if you tried to snap something just when a window
+       was about to close.  Now all the Intuition functions that open, close
+       or modify windows are patched so they will wait until snapping has
+       finished.  If you are running Kickstart 2.0, the new Intuition
+       functions are also patched.  This should fix all deadlocks.
+     New tooltype 'QUIET' added for startup from Workbench without window.
+     Tested with Enforcer and Mungwall debugging tools.
+
+******************************************************************************
+
+PowerSnap 1.1 written by Nico François (Yes, Nico is my first name :-)
+              thanks to Jorrit Tyberghein, Ives Aerts & Philip Marivoet for
+                        beta testing.
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

@@ -1,0 +1,31 @@
+The Player 6.1A converter source code (610.2)
+---------------------------------------------
+Copyright ages ago (1992-1995 I think :)
+by Jarno Paananen (Guru / Sahara Surfers)
+
+
+I honestly thought I had released these sources ages ago already, but it
+seems I didn't. Thanks to Robert Leffmann for bringing this to my
+attention :) So here it is, hopefully still in compilable form.
+
+Anyway, in case this is still useful to someone, I place it under
+public domain, so feel free to use it as you wish.
+
+// Jarno
+
+--------------------------------------------------------------------------------
+
+Changes/Hacks by Axis/Oxyron to make this usable in an automated build process:
+
+- Added missing dependencies.
+- Fixed some issues to make this assembling with VASM.
+- Removed user interface code with "ifd USER_INTERFACE" to make cmdline interface working without crashes.
+- Added hacked command line code with hardcoded filenames (Commandline data is only used for detection).
+- Added signaling of finished state with writing a finished file to the hd. So the build-process can detect that the conversion is done.
+
+TODO:
+
+- Make a real command line interface.
+- Add signaling of error state. So the build-process can detect that the conversion failed.
+
+@copyright 2015 Michael "Axis" Hillebrandt

@@ -1,0 +1,155 @@
+
+
+                          PPLoadSeg 1.1 User Manual
+
+                                 Sep 22, 1991
+
+
+
+Preface
+=======
+
+   The programs and files in this distribution are freely distributable, but
+are also copyright (c) Nico François.  They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+
+1. An introduction
+==================
+
+     Yet another PowerPacker support utility.  If you don not know what
+PowerPacker is I suggest you check out the shareware version on Fish disk #253
+or buy the (much improved) commercial version from UGA, JumpDisk or your local
+dealer.
+
+     This program will add a little magic to your Amiga.  It allows you to
+crunch libraries, devices, printer drivers, fonts, etc. with PowerPacker while
+they will still remain 100% functional.  It also allows you to crunch programs
+as data files (so without a decrunch header) while you will still be able to
+run them.  Black magic ?  No.  Patch magic :-)
+
+     The idea is not new.  The Imploder has provided the facility for a while,
+as lots of people pointed out to me.  It was therefore (naturally) a much
+heard suggestion for "the next version of" PowerPacker.  Well, here it is,
+_without_ a new version of PowerPacker!
+
+     It is advised you copy PPLoadSeg to C: and install it as the first
+command in your startup-sequence.  PPLoadSeg requires powerpacker.library so
+install this in Libs: if you haven't done so already.
+     An installation icon has been provided to do the things mentioned
+above automatically, just double-click it.
+
+     Once installed PPLoadSeg takes up no more than about 500 bytes of your
+precious memory.  I doubt that this will cause much memory problems :-)
+
+     PPLoadSeg is compatible with and supports Kickstart & Workbench 2.0.
+
+
+2. Usage 
+========
+
+     Usage is a doddle.  You have to do absolutely nothing!  You may crunch
+libraries, devices, printer drivers, fonts and they will be loaded like
+nothing happened (except that you will have gained a lot of space on your
+disks).  The only thing you have to do is crunch them as command files, but
+save then as *DATA* files!  Do not append '.pp' to the file name, so overwrite
+the original file with the crunched one.
+
+     If you have PowerPacker version 4.0a or higher you can crunch files using
+the 'LoadSeg File' mode.  This will crunch the files even better.  Note that
+you must also install powerpacker.library version 35 or higher for PPLoadSeg
+to recognize these crunched LoadSeg files.  Since PowerPacker 4.0a uses this
+version of the library as well this will probably be ok.
+
+     PPLoadSeg patches LoadSeg (as you might have guessed).  LoadSeg is a
+function in dos.library that is used to load most system things, like
+libraries and devices.  PPLoadSeg replaces LoadSeg with a function that
+knows about PowerPacked files.  This new improved LoadSeg will recognize and
+decrunch crunched files and hand them over to DOS like they were loaded
+normally and nothing extraordinary happened.
+
+     The Workbench loads programs using LoadSeg, so it is possible to save
+programs that will be loaded from Workbench as data files (no decrunch
+header!).  A lot of shells (like the AmigaDOS 2.0 shell) will also load
+commands using LoadSeg, so here you can save crunched commands as data (or
+as crunched LoadSeg files) as well.  Sadly the standard AmigaDOS 1.3 shell
+does NOT use LoadSeg.
+
+     It won't hurt to experiment!  If you try to crunch something and it turns
+out it isn't loaded using LoadSeg the program loading the crunched file will
+simply complain (if it is written correctly!) and no harm will be done.  Just
+decrunch the file and everyhting will be ok again.
+
+NOTE: - PPLoadSeg is intelligent about the way it patches LoadSeg.  If you
+        run other programs that patch LoadSeg it is possible they will crash
+        if they are run after PPLoadSeg.  Note that this is not PPLoadSeg's
+        fault!  PPLoadSeg should therefore be run AFTER these commands by
+        putting these commands BEFORE PPLoadSeg in your startup-sequence.
+        Utilities that might patch LoadSeg are e.g. linkvirus detectors.
+      - PPLoadSeg has been succesfully tested with: libraries, devices,
+        printer drivers, keymaps, fonts, and _some_ handlers.
+      - As said above it is suggested that you crunch as a command file and
+        save as a data file.  It is possible to crunch AND save as data, but
+        there is a small risk in that case.  PowerPacker does not support all
+        hunks (e.g. debug hunks) and by crunching as a command file you make
+        sure PowerPacker will be able to handle all hunks in the file.
+        The next version of PowerPacker will have a special setting for
+        crunching libraries and devices.
+        If you have PowerPacker 4.0a simply crunch using the 'LoadSeg File'
+        mode and ignore the above.
+      - On Kickstart 2.0 PPLoadSeg will also patch NewLoadSeg.
+      - Don't try to crunch 'powerpacker.library'!  Figure out for yourself
+        why not :-)
+
+
+                           As always, I hope you find this program useful!
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.1
+
+     Added embedded version string for use with 2.0 Version command.
+     Processor cache is cleared after relocation for 68040 compatibility.
+       (Only on Kickstart 2.0 V37!).
+     In conjunction with V35 powerpacker.library supports LoadSeg files
+       crunched with PowerPacker Professional 4.0a.  These files are up to
+       10% shorter than files crunched as data files.
+
+*****************************************************************************
+
+PPLoadSeg 1.1 written by Nico François (Yes, Nico is my first name :-)
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever !
+

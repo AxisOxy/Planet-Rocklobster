@@ -1,0 +1,18 @@
+
+; Script file to install powerpacker.library & PPLoadSeg
+
+FailAt 21
+Echo "*n'PPLoadSeg' and powerpacker.library Installation Script*n"
+Copy powerpacker.library LIBS:powerpacker.library
+Echo "powerpacker.library copied to your Libs: directory."
+Copy PPLoadSeg C:PPLoadSeg
+Echo "PPLoadSeg copied to your C: directory."
+
+Echo "*nShall I modify your Startup-Sequence to make 'PPLoadSeg'"
+Echo "part of your initial startup ?*n"
+ModifySSequence PPLoadSeg
+
+Echo "*nInstallation complete.*n"
+
+Wait 5
+EndCLI >NIL:

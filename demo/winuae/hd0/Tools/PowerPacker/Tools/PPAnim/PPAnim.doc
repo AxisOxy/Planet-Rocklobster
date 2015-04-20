@@ -1,0 +1,216 @@
+
+
+                           PPAnim 1.0b User Manual
+
+                                 Sep 22, 1991
+
+
+
+Preface
+=======
+
+   The programs and files in this distribution are freely distributable, but
+are also copyright (c) Nico François.  They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+3. Features
+
+
+1. An introduction
+==================
+
+   PPAnim was written to complement one of my other utilities, PowerPacker
+(a command and data cruncher).  It is used to play normal IFF ANIM #5 files or
+ANIM files crunched with PowerPacker.  The decrunching is done automatically
+so the user does not have to know if a file is crunched or not.  The ANIM #5
+format is used by most ANIM generating programs, including DPaint III and
+Videoscape 2.0.
+
+   PPAnim uses 'powerpacker.library' and 'reqtools.library', so make sure
+these are present in your Libs: directory.  Double-click 'Install_libs' for
+an automatic installation.
+
+   If you haven't got PowerPacker you are of course missing one of the main
+features of this program.  PowerPacker is available as shareware (up to
+version 2.3b) or as a commercial program (version 4.0a).  The commercial
+version offers several enhancements like 40 to 50 times faster crunching,
+better crunching, overlay support and an ARexx port.
+
+
+2. Usage
+========
+
+   PPAnim can be used in four different ways.
+
+- First of all via the CLI:
+
+   If you enter 'PPAnim ?' will get a usage template.  You use PPAnim like
+this:
+
+   PPAnim [-h] [-j#] [-l#] [-r[#]] [-i] [-o] [<file|dir>]
+
+   The program will by default load the ANIM file and play it in a loop.
+If the file was crunched using PowerPacker 2.0 or higher PPAnim will first
+decrunch it for you.  If the file was encrypted you will be prompted for the
+password.
+
+   If you enter PPAnim without options, you will be presented with a file
+requester.  Entering PPAnim with a directory instead of a file as an argument
+will also get you a file requester, but it will be positioned in the directory
+you specified.
+
+   PPAnim has several options:
+
+     -h   :  This option is used to force HAM mode when no CAMG chunk is
+             found.  If you don't specify this option PPAnim will assume a
+             6 plane screen is extra-halfbrite.  (Note that it is wrong for
+             an Amiga IFF ANIM file not to have a CAMG chunk, especially
+             when there can be doubt about what display mode to pick!)
+     -j#  :  Set a delay between frames in jiffies.  A jiffie is 1/50s (PAL)
+             or 1/60s (NTSC).
+     -l#  :  Set number of times to loop.
+     -r[#]:  Select repeat mode instead of loop mode (see below) and
+             (optionally) set number of repeats.
+     -i   :  Force screen to be interlaced.
+     -o   :  Play the animation once, no loop (same as -l1 or -r1).
+
+   The difference between loop mode and repeat mode is the following: in
+loop mode PPAnim expects the last two frames of the animation to be the same
+as the first two frames, this makes looping easy and above all fast (DPaint
+saves animations like this).  Some animations are not like this however and
+if you want these to loop correctly you must select repeat mode (-r), PPAnim
+will then simply restart the animation when it finishes (note that there may
+be a small hickup when the animation repeats because the first frame takes
+longer to draw than the rest).
+
+   PPAnim can be made resident so it doesn't have to be loaded every time
+you use it, use the ARP ARes command or the c: Resident command for this.
+You can't make PPAnim resident when it is crunched!!  The file is supplied
+as an uncrunched command file with the pure bit set.  PPAnim is reentrant as
+well, so you can run it from several CLI's at the same time. (Not that this
+is very useful, but it's possible :-D)
+
+   Example:   '1> PPAnim -j10 -i Hard1:anim/SlowInterlaced.anim'
+
+- Via the WorkBench:
+
+   There are three different ways of using PPAnim via the workbench: you
+can set the default tool of the (crunched) ILBM file to 'PPAnim', you can
+single click the PPAnim icon and then shift double click the animation icon or
+you can double-click the PPAnim icon and enter the filename in the string
+gadget (or filerequester) you will be presented with.
+   You set the default tool by single clicking the icon of the picture and
+selecting 'Info' from the workbench menu.  You will get a window with several
+gadgets in it, click in the string gadget where it says 'Default tool' and
+enter ':ppanim'.  PPAnim should be in the root directory of your disk for this
+to work, if e.g. it's in the C directory you should enter ':c/ppanim'.  Last
+of all select the 'Save' gadget.
+
+   You can set the same options as from CLI by setting tooltypes in the
+animation's icon (NOT PPAnim's icon!).  PPAnim recognizes the following
+tooltypes (for more info see CLI options):
+
+     TIMES=<number>       Set number of loops or repeats.
+     JIFFIES=<jiffies>    Set delay in jiffies.
+     REPEAT               Select repeat mode.
+     ONCE                 Play once only.
+     LACE                 Force interlace.
+
+
+NOTE: - PPAnim will add '.pp' to the filename when the file wasn't found.
+        This is very useful in the WorkBench enviroment: you can make an
+        icon for 'bird.anim' but name the file 'bird.anim.pp'.  Now the
+        WorkBench will show an icon with 'house.pic' as name, but if you
+        doubleclick it 'bird.anim.pp' will be played. (As long as there
+        is no 'bird.anim' file in the directory!)
+
+
+3. Features
+===========
+
+   - PPAnim uses the file requester of reqtools.library.
+
+   - PPAnim supports a change of the color palette during the animation.
+
+   - Abort PPAnim by pressing 'Q', Esc, or the right mouse button.  The screen
+     can be dragged by an invisible drag bar at the top.
+
+   - The pesky little mouse will be removed while playing.
+
+   - PPAnim offers full overscan support, PAL or NTSC.  All Amiga display
+     modes (like HAM, EHB) are of course also supported.
+
+   - Press 'L' to load another animation, you will be prompted for a filename.
+
+   - Press 'S' or the left mouse button to start/stop the animation.  Press
+     'N' to advance a frame (when stopped).
+
+   - PPAnim reads the 'DPAN' IFF chunk DPaintIII saves with animations to find
+     the rate at which to play the animation.  Note that user options override
+     this rate (-j# or JIFFIES=<j>).
+
+   - PPAnim is short (only about 7K)!  A lot shorter than Sparta's ShowANIM,
+     and on top of that it has a lot more features :-)
+
+   - PPAnim is compatible with Kickstart & Workbench 2.0.
+
+
+                        As always, I hope you find this program useful!
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.0a
+
+     Seemed that the asl requester no longer worked on the latest
+       Kickstart 2.0 (release V37). Fixed.
+     Asl requester doesn't show '.info' icon files.
+
+*****************************************************************************
+VERSION 1.0b
+
+     Asl and Arp requester removed.
+     PPAnim now uses the ReqTools file requester from reqtools.library.
+     Pressing Esc also aborts the animation.
+     Canceling the file requester will no longer load the last animation
+       again.
+
+*****************************************************************************
+
+PPAnim 1.0b written by Nico François (Yes, Nico is my first name :-)
+            special thanks to Jim Kent (whom I don't know :-) for making his
+                                       ANIM #5 decoding source public domain.
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever!
+

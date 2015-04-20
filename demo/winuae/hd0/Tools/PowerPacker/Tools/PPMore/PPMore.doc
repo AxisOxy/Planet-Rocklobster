@@ -1,0 +1,482 @@
+
+
+
+                            PPMore 2.0 User Manual
+
+                                 Oct 6, 1991
+
+
+
+Preface
+=======
+
+The programs and files in this distribution are freely distributable, but are
+also copyright (c) Nico François.  They may be freely distributed as long as
+no more than a nominal fee is charged to cover time and copying costs.
+   No commercial usage is permitted without written permission from the
+author.  Everything in this distribution must be kept together, in original
+unmodified form.
+   The above is generally known as freeware.
+
+   If you have suggestions or remarks about this program, or if you find
+any bugs, please let me know.
+
+   Write to the following address:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+   PPMore 2.0 requires AmigaDOS Release 2 (Kickstart & Workbench 2.0) to run.
+
+
+Contents
+========
+
+1. An introduction
+
+2. Usage
+
+3. Control
+
+4. Using PPMore from other programs
+
+
+1. An introduction
+==================
+
+This program was written to complement one of my other utilities,
+PowerPacker (a command and data cruncher).  It is used to read normal ascii
+text files or text files crunched with PowerPacker.  The program itself is
+about 13K long and when you know you save about 60% when you crunch a text
+file, you can see that this could save a lot of space on your disks.
+
+   PPMore was written as a more replacement (as you could have guessed :-),
+so I tried to keep the keyboard commands the same as well as adding some new
+ones.  There are two main differences between PPMore and More, PPMore uses
+gadgets and it always loads the complete file in memory (More only loads part
+of the file and will load the rest when needed).  If you can live with these
+differences, you can replace More with PPMore anywhere you want.
+
+   PPMore uses 'powerpacker.library' and 'reqtools.library', so make sure
+these are present in your Libs: directory.  Double-click 'Install_libs' for
+an automatic installation.
+
+     If you haven't got PowerPacker you are of course missing one of the main
+features of this program.  PowerPacker is available as shareware (up to
+version 2.3b) or as a commercial program (version 4.0a).  The commercial
+version offers several enhancements like 40 to 50 times faster crunching,
+better crunching, overlay support and an ARexx port.
+
+
+2. Usage
+========
+
+PPMore can be used in several different ways.
+
+- First of all via the CLI:
+
+   If you enter 'PPMore ?' you will get a standard AmigaDOS template.  Enter
+'PPMore ??' for more information.  You use PPMore like this:
+
+   PPMore [<file|dir>] [TABS n] [PUBSCREEN <name|@addr|@*>]
+                       [MEMVIEW m,l,f[,n]]
+
+   If you provide a file the program will load and display it.  Files
+crunched using PowerPacker 2.0 or higher will be automatically decrunched by
+PPMore.  If the file was encrypted you will be prompted for the password.
+
+   Options:
+
+      TABS n     Select tabsize, default is 8.  Also see the Settings menu.
+      PUBSCREEN  Specify the public screen (by name) where PPMore should open
+                 its main window.  Note that only real public screens will
+                 be recognized, not any screen.  If you do not specify this
+                 option the default public screen will be used (normally
+                 the Workbench).
+
+   The MEMVIEW option and other uses of the PUBSCREEN option are explained in
+section 4.
+
+   PPMore can be made resident so it doesn't have to be loaded every time
+you use it, use the C: Resident command for this.  You can't make PPMore
+resident when it is crunched!!  The file is supplied as an uncrunched command
+file with the pure bit set.
+   If you enter PPMore without options, you will be presented with a file
+requester.  Entering PPMore with a directory instead of a file as an argument
+will also get you a file requester, but it will be positioned in the directory
+you specified.
+
+   Examples:
+
+     o PPMore DOCS:PPMore.doc TABS 4
+
+         Load and display 'DOCS:PPMore.doc' and use a tabsize of 4 spaces.
+
+     o PPMore PUBSCREEN "Public Screen" TABS=6 AUTO:
+
+         Put up file requester (in directory AUTO:) and open window on
+       the public screen named 'Public Screen' (if found).  Quotes are
+       used to pass a screentitle with spaces.  Use tabsize of 6.
+
+     o PPMore ppmore.doc.pp PUBSCREEN Workbench
+
+         Load and display 'ppmore.doc.pp' on the Workbench screen, no
+       matter what the default public screen is.
+
+- Via the WorkBench:
+
+   There are three different ways of using PPMore via the workbench: you
+can set the default tool of the (crunched) text file to 'PPMore', you can
+single click the PPMore icon and then double click the text file icon or you
+can double-click the PPMore icon and pick a file using the file requester.
+
+   You set the default tool by single clicking the icon of the text file
+and selecting 'Info' from the workbench menu.  You will get a window with
+several gadgets in it, click in the string gadget where it says 'Default
+tool' and enter 'PPMore'.  PPMore should be in the command path for this to
+work, otherwise you must enter the full path so Workbench can find it.  Last
+of all select the 'Save' gadget.
+
+   Following tooltype is recognized by PPMore (in the text file's icon, not
+PPMore's icon):
+
+     TABS=n  : Set tabsize for file (default 8).
+
+
+NOTE: - PPMore will add '.pp' to the filename when the file wasn't found.
+        This is very useful in the WorkBench enviroment: you can make an
+        icon for 'text.doc' but name the file 'text.doc.pp'.  Now the
+        WorkBench will show an icon with 'text.doc' as name, but if you
+        doubleclick it 'text.doc.pp' will be displayed.  (As long as there
+        is no 'text.doc' file in the directory!)
+      - After reading a file you can press 'L' to load a new file, instead of
+        quitting and restarting.
+      - In the AmigaDOS template ignore the /M modifier on FILE, PPMore does
+        not accept multiple file names (it was needed to let PPMore still
+        support the old command line format for compatibility).
+
+
+3. Control
+==========
+
+   PPMore can be controlled by keyboard or by intuition gadgets.  To get a
+summary of the keyboard commands press <HELP>, the function of the gadgets
+shouldn't be hard to understand.
+
+   A few notes on printing:
+
+   o The printer.device has to be in the DEVS: directory for PPMore to be
+     able to print, you should also have correct preferences settings for
+     your printer.  Make especially sure the number of lines is correct.
+
+   o You can continue to read the text when PPMore is printing (this IS a
+     multitasking computer! :-), you *CAN* quit when printing is still in
+     progress, printing will continue and all memory will be freed once it
+     is finished.
+
+   PPMore has a settings menu that allows you to change most of its settings.
+You can save these settings, snapshot or unsnapshot PPMore's window.
+
+   The settings menu allows you to switch the following things on/off:
+
+   o Scroll Text:  This determines if text is scrolled or paged upon doing
+     a page up or down.  Note that the shifted keys/gadgets temporarily
+     reverse this switch.  By this I mean that if Space does a paged page
+     down, pressing Shift Space will do a scrolled page down.
+
+   o Wrap Lines:  Line wrap mode determines how lines that are too long will
+     be displayed.  If it is on long lines will continue on the next line, if
+     it is off they will be cut off.  If a line is cut off an inverse '>'
+     will appear on the right edge of the window.
+
+   o Line Numbers:  If this is on PPMore will display line number in the
+     title of its window instead of a percentage.
+
+   You can also change the tab size and the window's font.  Any fixed width
+font will work.  'Snapshot Window' will remember PPMore's window position.
+'Unsnapshot Window' will forget the position and will go back to the default
+behaviour of opening a window as large as the visible screen size.
+
+
+4. Using PPMore from other programs
+===================================
+
+   If you are not a programmer you can skip this section.
+
+   PPMore has two special options to make it possible to use it from other
+programs.  This way you don't have to include a text displayer in your
+program, you just execute PPMore with one (or all) of the following options:
+
+   MEMVIEW mem,len,flags[,name]
+
+     If you specify this option PPMore will not load a file but instead it
+   will display a chunk of memory.  You specify the memory addres and
+   length in the command line as well as some flags.  The current version
+   only has one flag: PPMORE_FREEMEM = bit 0 of the flag-word = 0x1.
+     When this flag is set PPMore will free the memory after it has
+   finished (using exec.library/FreeMem()), if it isn't set PPMore will
+   just exit and leave the memory alone.  This way your program can start
+   PPMore with the PPMORE_FREEMEM flag set and exit before PPMore has ended.
+   PPMore will then free the memory instead of your program.
+     The address, length and flags must be presented as HEX longwords
+   seperated by a comma.  These options can be followed by another comma
+   and a string to give the memory chunk a name, if this string is omited
+   PPMore will use the name 'memory'.
+
+   PUBSCREEN @addr  or  PUBSCREEN @*
+
+     Apart from the use of the PUBSCREEN option explained in section 2, you
+   can supply a '@' followed by a screen address in HEX or a '*'.  PPMore
+   will then open the main window on this screen.  If you specify a '*' the
+   frontmost screen will be used.
+
+   Examples:
+
+     o PPMore MEMVIEW "1A000,1D4E,0,my chunk"
+
+         PPMore will open a window 'Listing of my chunk', start
+       displaying at address 0x1A000 and stop at address 0x1BD4E.  The
+       memory will not be freed after PPMore exits.  Note the use of
+       quotes to get a title with spaces in.
+
+     o PPMore PUBSCREEN @c2d8a0 MEMVIEW 1A000,1D4E,1,memname
+
+         Same as previous but now PPMore will free the memory chunk and
+       open the main window on the custom screen with the screen structure
+       on address 0xc2d8a0.
+
+     o PPMore PUBSCREEN @* myfile
+
+         Load and display the file 'myfile' and open window on the front
+       screen.
+
+NOTE: - If you use PPMore on another screen that is not a public screen
+        PPMore will not check if the screen closes!  PPMore should always
+        finish before this screen is closed! (There is no problem when you
+        open the window on a public screen)
+      - Watch out when using these options, it is very easy to crash the Amiga
+        if you don't know what you are doing!  Using the PUBSCREEN with
+        the name of a public screen is of course 100% safe.
+      - The '-S' and '-@' options of older versions of PPMore are still
+        supported for compatibility, but you should no longer use them.
+
+
+                      As always, I hope you find this program useful!
+
+
+                              PROGRAM HISTORY:
+
+*****************************************************************************
+VERSION 1.0
+
+     First release.
+
+*****************************************************************************
+VERSION 1.1
+
+     '.pp' suffix added to filename when file not found, very useful in
+       WorkBench enviroment.
+     PPMore now also loads encrypted files. (PowerPacker 2.3a or higher)
+
+*****************************************************************************
+VERSION 1.2
+
+     Rewritten some routines in assembler, results in a slightly faster
+       and smaller PPMore.
+     Keyboard input improved. Autorepeat of keys is ignored so you can keep
+       on pressing <page down> without typing it 20 times ahead!
+     Gadget input also improved, now handles repeat.
+     PPMore now prompts for a filename when double-clicked from WorkBench.
+
+*****************************************************************************
+VERSION 1.3
+
+     PPMore can now be made resident and is reentrant. (provided PPMore is
+       not crunched)
+     Improved error reporting, the main window only opens when PPMore is
+       going to display the file.
+     File is checked to see if it is an ASCII (text) file.
+     Two new power-options for use of PPMore from other programs:
+       -@ to display memory, -S to open window on a custom screen.
+     Fast assembler search function added.
+     Display position is displayed in titlebar (percentage).
+     Goto n% function added, replaced 'Refresh' gadget with this function.
+     Decrunching is 15% faster.
+     'Exit PPMore' only selected when button is released on top of gadget.
+     NO bugs removed because none where found. :-)
+     Only about 700 bytes larger than version 1.2!
+
+*****************************************************************************
+VERSION 1.4
+
+     Bug fixed: PPMore 1.3 was not 100% pure, version 1.4 is!
+     ASCII check less strict (e.g. now allows files to contain a '©')
+     Another 300 bytes shorter than version 1.3 :-)
+
+*****************************************************************************
+VERSION 1.5
+
+     Bug fixed: search/goto window always opened on WorkBench screen.
+     Find previous also implemented.
+     Load a new file from within PPMore.
+     PPMore uses ARP file requester if arp.library is available.
+     Line count, as well as goto line.
+     Display position as percentage or line number.
+     Keypad = movement. (for PC-lovers, yek :-( )
+     PPMore now supports all keymaps!! I think especially german and french
+       Amiga users will be grateful for this.
+     Less than 600 bytes longer than version 1.4 (I love this :-D)
+
+*****************************************************************************
+VERSION 1.5a
+
+     Decrunching is 40% faster, this was a stupid mistake in 1.3 to 1.5,
+       I accidently used a slower instead of a faster decrunch routine :-(
+
+*****************************************************************************
+VERSION 1.5b
+
+     The Guru isn't with me lately, after using a slow decruncher in 1.3-1.5
+       by accident I now used a fast but faulty decruncher in 1.5a. It
+       sometimes didn't decrunch correctly, this has now been fixed. The
+       decruncher is still 40% faster than the 1.3-1.5 one. (and it's 2 bytes
+       shorter :^D )
+
+*****************************************************************************
+VERSION 1.6
+
+     Bugs in search fixed, didn't work correctly when used in large files and
+       sometimes didn't work at all :-(
+     Error output goes to the console when you start PPMore from the CLI,
+       WorkBench error reporting still in small window as before.
+     The ASCII check was made less strict (again).  I got a lot of complaints
+       from German users trying to display german documents, this should now
+       no longer be a problem.
+     If you deactivated the window when PPMore was loading PPMore would hang
+       until you resized its window, this has been fixed.  (Actually, I
+       worked around this problem, I think it was an Intuition bug :-)
+     PgUp, PgDn and the shifted arrow keys now do an immediate page up/down
+       without scrolling, SPACE and BS still scroll up/down.
+     Changed some things so PPMore runs better on Kickstart 2.0, next
+       version of PPMore will probably be a Kick 2.0 only version so I can
+       make use of all the new goodies of the new OS :^)
+
+*****************************************************************************
+VERSION 1.6a
+
+     Small update on special request.  Now possible to dump just the visible
+       page to the printer instead of the entire file.
+
+*****************************************************************************
+VERSION 1.7
+
+     No Kickstart 2.0 only version yet.  Changed some stuff so PPMore looks
+       best on Kick 2.0 and still runs on Kick 1.3.
+     Uses the all new powerpacker.library => shorter code :^D
+     Starting PPMore from the CLI with a directory as an argument now puts
+       up the requester positioned in that directory. Extremely useful once
+       you get used to this :^)
+     Small bug fixed in search routine, it sometimes missed an occurence.
+     PPMore filters out form-feeds and replaces them with <FORM FEED>.
+     If you are running Workbench 2.0 PPMore will use the asl.library
+       instead of the arp.library (for the filerequester).
+     Now fully supports system & screen fonts different than topaz 8.
+     Automatic refresh when you resize the window (only on Kick 2.0,
+       couldn't be done on 1.3 because of bug in console.device)
+     Used different technique to find workbench screen size, using
+       NormalDisplayRows no longer seemed to work on 2.0 ?!?!?
+
+*****************************************************************************
+VERSION 1.8
+
+     Nicer new-look 3D gadgets in window border for Kickstart 1.3.
+     Line wrap on/off implemented.  If switched off causes all lines to be
+       cut off at the right edge of the window.
+     Seemed that the asl requester no longer worked on the latest
+       Kickstart 2.0 (release V37). Fixed.
+     Asl requester doesn't show '.info' icon files.
+
+*****************************************************************************
+VERSION 2.0
+
+     Yep, an AmigaOS 2.0 only version.  Sorry to all the 1.2 & 1.3 users,
+       just consider this program yet another reason to upgrade :-)
+
+     The filerequester from the arp.library is no longer used/supported.
+     PPMore now uses reqtools.library (also by moi) for its requesters.
+       Among other things this means a much better filerequester than
+       before (with a buffer).  Asl is no longer used, sorry Commodore :-)
+     Improved command line format, follows AmigaDOS standard (old command
+       line format is still supported for compatibility).
+     Workbench tooltypes supported (TABS=n).
+     PPMore will open its window on the default public screen.
+     The '.pp' suffix is removed from the filename in the window title.
+     Fully supports public screens with the PUBSCREEN option, file requester
+       will also appear on public screen.
+     PPMore will bring the screen it appears on to the front.
+     The user is now given the option to read all files, so it is possible
+       to force PPMore to display files it considers binary (non-ASCII).
+     Tabsize is user-definable, PPMore will expand tabs to up to 8 spaces.
+       Files with lots tabs (e.g. source codes) display much nicer now :^)
+     Printing has been considerably improved, PPMore now prints in pages
+       and puts a title with the filename (excluding path and '.pp') and the
+       page number at the top of each page (Page dumps will have no title).
+       Tabs are expanded to the same size as in the text window.  Also, it
+       is now possible to quit PPMore once printing has started, printing
+       will continue in the background.
+     Error reporting improved, PPMore will no longer open a small window for
+       error messages when loading. When started from CLI, errors are printed
+       on the console; when started from Workbench, a requester is used.
+     From Workbench, if you single-click PPMore and shift double-click a
+       drawer icon, PPShow will open up the filerequester in that drawer.
+     If you use 'PPMore <file>' or extend-select <file> from Workbench and
+       you invoke the filerequester, it will be positioned in the directory
+       <file> is in.
+     Directories are expanded to their full pathnames on startup.
+     You can now use CTRL-C to quit and CTRL-D to break scripts.
+     Bug & quirk fixes:
+       All gadgets and text now stay visible on a 1 bitplane screen.
+       Formfeeds are now replaced by an inverse L instead of <FORM FEED> and
+         may appear anywhere in the file, not just at the start of a line.
+       Page up/down without scrolling will no longer refresh window when at
+         top/bottom of file.
+       PPMore has always used one column less than was available, I finally
+         noticed this and fixed it (how come nobody saw this ? :-)
+       Keypad now really is movement, aside from PgUp, PgDn, Home and End,
+         you may now also use the arrows on the keypad.
+       PPMore now returns a returncode of 20 in case of an error or if ended
+         by CTRL-D.
+     Removed read in low memory when the close gadget was used.  Thanks to
+       the enforcer I was able to fix a VERY obscure bug :-)
+     PPMore now contains a version string.  Use 'Version PPMore' to display
+       the internal version number.
+     Shift 'Next Page' and 'Prev Page' now do an immediate page up/down
+       without scrolling, just like Shift Arrow Up, Shift Arrow Down.
+     Window has been changed to simple refresh, saves chip memory.
+     Added a Project menu with 'Load File...' and 'Quit' items.
+     A Settings menu has also been added to the window.  It allows you to
+       change and save several settings.
+     The position of the window can be snapshot (Settings menu).
+     Scrolling can be switched off (Settings menu), so 'Next Page',
+       'Prev Page', Space and Backspace do an immediate page up/down.
+       If scrolling is off the shifted gadgets/keypresses will page
+       with scrolling (instead of without).
+     The font used to print the text can be changed (in the Settings menu).
+     PPMore's window will only cover the visible portion of the screen, it
+       will no longer open a window that is as big as the whole screen.
+       This is only true if the window has NOT been snapshot.
+     Gadgets use a (private) boopsi image class, much nicer :-)
+
+*****************************************************************************
+
+PPMore 2.0 written by Nico François (Yes, Nico is my first name :-)
+           thanks to Holger Lubitz for the many bug reports :^) and all the
+                                   useful suggestions.
+
+(c) 1991 Nico François
+
+                                   //
+                       Thanks to \X/ Amiga for being the best computer ever!
+

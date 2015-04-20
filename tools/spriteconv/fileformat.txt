@@ -1,0 +1,48 @@
+normal-mode (4 colors):
+-----------------------
+
+word - numcolors
+
+word - numsprites
+
+word - height in pixels
+
+numcolors
+{
+	word - palette
+}
+
+height
+{
+	numsprites
+	{
+		word - plane1
+		word - plane2
+	}
+}
+
+
+attach-mode (16 colors):
+------------------------
+
+word - numcolors
+
+word - numsprites
+
+word - height in pixels
+
+numcolors
+{
+	word - palette
+}
+
+height
+{
+	numsprites
+	{
+		word - plane1
+		word - plane2
+		word - plane3
+		word - plane4
+	}
+}

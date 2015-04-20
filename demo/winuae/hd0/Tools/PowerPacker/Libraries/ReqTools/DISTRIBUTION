@@ -1,0 +1,122 @@
+
+                      **********************************
+
+                          reqtools.library
+
+                          The requester toolkit.
+
+                          Release 1.0d
+
+                          (c) 1991/1992 Nico François
+
+                      **********************************
+
+
+   The programs and files in this distribution are freely distributable, but
+are also Copyright (c) Nico François. They may be freely distributed as long
+as no more than a nominal fee is charged to cover time and copying costs.
+
+   Programmers can register as a ReqTools developer by sending US$25 to:
+
+                                Nico François
+                                Corbielaan 13
+                                B-3060 Bertem
+                                BELGIUM
+
+   Send money by EuroCheck (only in Belgian Francs (BEF)!), postal(!) money
+order or cash!  It's impossible for me to cash in foreign checks.  Please
+state the version of reqtools.library you have (use the C:Version command to
+display the version) and if you use the 1.3 or 2.0 version.
+
+   If you register you will be sent the next update of ReqTools (when it
+becomes available) and you will be kept up to date concerning further
+developments regarding ReqTools.
+
+   The complete ReqTools package contains following files:
+
+    Aztec (dir)
+        reqtools.lib
+        reqtoolsnb.lib
+    doc (dir)
+        reqtools.doc
+        windowptr.readme
+    demo (dir)
+        demo
+        demo.c
+        makefile
+    dlib (dir)
+        README
+        reqtoolss.lib
+        reqtoolssr.lib
+        Source.lzh
+    fd (dir)
+        reqtools_lib.fd
+    include (dir)
+        clib (dir)
+            reqtools_protos.h
+        libraries (dir)
+            reqtools_lib.i
+            reqtools.h
+            reqtools.i
+        pragmas (dir)
+            reqtools.h
+        proto (dir)
+            reqtools.h
+    include13 (dir)
+        utility (dir)
+            hooks.h
+            hooks.i
+            tagitem.h
+            tagitem.i
+    kick13 (dir)
+        reqtools.library
+    kick20 (dir)
+        reqtools.library
+    lib (dir)
+        README
+        reqtools.lib
+        reqtoolsnb.lib
+        Source.lzh
+    Modula2 (dir)
+        ReqTFileReq.def      ReqTFileReq.mod
+        ReqTools.def         ReqTools.doc
+        ReqTools.dok         ReqToolsDemo.mod
+        ReqToolsSupport.def  ReqToolsSupport.mod
+    Oberon (dir)
+        ReqTools.mod
+        ReqToolsDemo.mod
+    RTPatch (dir)
+        RTPatch
+        RTPatch.doc
+    DISTRIBUTION
+    README
+    reqtoolsDemo
+    Install
+    Install.script
+
+   The 'include13' directory holds clones of 'utility/tagitem.[hi]' and
+'utility/hooks.[hi]' for people who haven't got the 2.0 include files.  The
+original files are not included because they are copyrighted by Commodore.
+
+   All of these files (except demo.c and ReqToolsDemo.mod) must remain
+unmodified and are copyrighted by the author.  None of these files may be
+distributed on its own, the entire package must be distributed as one whole.
+'demo.c' and 'ReqToolsDemo.mod' are full public domain and can be used in any
+way you like.
+
+   There is one exception to the above.  If you plan to release a freely
+distributable program, you may include 'kick13/reqtools.library',
+'kick20/reqtools.library' and the installation script (with icon) with your
+distribution.  It is left to the programmer to decide whether he wished to
+register as a ReqTools developer.  Registration is not required, use is free.
+
+   Commercial usage is allowed if the following two conditions are met:
+a) you register as a ReqTools developer and b) you send me a copy of your
+program(s) using reqtools.library.  If these conditions are met you are
+allowed to include the 1.3 and 2.0 version of reqtools.library and the
+install script with your commercial product.
+
+   Whether your program is freely distributable or commercial, you must state
+in your documentation that your program uses reqtools.library and that
+ReqTools is Copyright (c) Nico François.
+

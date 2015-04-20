@@ -1,0 +1,3 @@
+Echo "Printing manual..."
+Copy PowerPacker.doc TO PRT:
+Echo "Done."

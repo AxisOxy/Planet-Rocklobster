@@ -1,0 +1,1196 @@
+[0m
+
+               [1mP O W E R P A C K E R   P R O F E S S I O N A L[0m
+
+
+                           Command and Data Cruncher
+
+
+
+                                 [1mVersion  4.0a[0m
+
+                          Copyright (c) Nico Francois
+
+
+                                  7 March 1992
+
+
+
+  [1;4mContents[0m
+
+
+  Copyright                                                                  2
+
+  Preface                                                                    2
+
+  1 The Packer                                                               2
+
+    1.1 Introduction ....................................................... 2
+
+    1.2 The File Requester ................................................. 3
+
+    1.3 The Basic Pull-down Menus .......................................... 4
+
+      1.3.1 Project Menu ................................................... 4
+
+      1.3.2 Prefs Menu ..................................................... 4
+
+      1.3.3 Encryption ..................................................... 6
+
+  2 Recrunching                                                              7
+
+  3 The Hunklab                                                              8
+
+    3.1 Hunklab Preferences ................................................ 8
+
+    3.2 Process File ....................................................... 8
+
+  4 Scripts                                                                  8
+
+  5 The Supervisor Window                                                   10
+
+  6 A Sample Session                                                        10
+
+  7 Shell Commands                                                          11
+
+  8 Public Screen                                                           12
+
+  9 ARexx                                                                   13
+
+  A Program History                                                         16
+
+  B Acknowledgements                                                        20
+
+
+
+
+
+
+
+
+
+
+
+                                        1
+
+
+
+  [1;4mCopyright[0m
+
+
+  I wish this paragraph wasn't necessary, but...
+
+  PowerPacker was first released as shareware and although response was not
+  bad it was very low compared to how many people actually used PowerPacker.
+  Therefore I have decided to release PowerPacker commercially, the price is
+  about the same as the shareware version, but now you pay first and use it
+  afterwards.  I have really put an enormous amount of time and effort into
+  creating this product and I have tried to make this program as good as I
+  possibly can.
+
+  PowerPacker is released on a low budget label that gives excellent
+  conditions to the programmer, so by buying this program you are really
+  supporting the programmer and not just the software house.  The program is
+  not copy protected, so make a backup copy or install it on your hard disk
+  but PLEASE do not pirate this program or copy it for your friends, the
+  price has been kept so low that everybody can afford it.  Thank you.
+
+
+  [1;4mPreface[0m
+
+
+  Thank you for buying PowerPacker Professional 4.0a, the standard command
+  and data cruncher for the Amiga.  This version of PowerPacker is no longer
+  shareware, it is a commercial product.  Use without paying is both illegal
+  and immoral.  If you want to use PowerPacker or PowerPacker related
+  programs/routines for commercial purposes you need a written permission.
+
+  Write to the following address:
+
+                                  Nico Francois
+                                  Corbielaan 13
+                                  B-3060 Bertem
+                                  BELGIUM
+
+  PowerPacker requires 'reqtools.library' and 'powerpacker.library' to run.
+  These libraries are also Copyright (c) Nico Francois, read the DISTRIBUTION
+  file in the 'pplib' and 'reqtoolslib' directory for distribution
+  conditions.
+
+  Double-click the 'Install_Libs' icon to install these libraries in Libs:.
+
+
+  [1;4m1 The Packer[0m
+
+  [1m1.1 Introduction[0m
+
+  PowerPacker is a userfriendly command and data cruncher, it is a menu
+  driven utility that can crunch almost any file on your disks.  It can be
+  started from the CLI/Shell or Workbench, just type its name in the Shell
+  window or double-click its icon.  PowerPacker will detach itself from the
+
+
+                                        2
+
+
+
+  Shell so you can close the Shell window.  Starting PowerPacker twice will
+  bring up a requester asking you if you want to pop the first PowerPacker to
+  the front or run another copy.  PowerPacker also has a pop-to-front hotkey.
+  Pressing Amiga-Amiga-P anywhere will bring PowerPacker's screen to the
+  front.  Note that a second copy of PowerPacker will have no hotkey!
+
+  When you use PowerPacker it's best to maintain a certain order in your
+  actions (as we will see in section 6 of this manual):
+
+  (1) Check the preferences at the beginning of a session (Prefs menu).
+  (2) Load a file from disk (Project menu).
+  (3) Wait for the file to (de)crunch.
+  (4) Save the file back to disk (Project menu).
+
+  Apart from crunching, you can also recrunch files that were crunched by
+  most other crunchers, the HunkLab enables you to force code or data in Chip
+  RAM and to remove debug or symbol hunks from command files and the script
+  allows you to e.g. crunch a dozen of files overnight.
+
+  Before it is explained how to use PowerPacker, let's take a look at the
+  file requester and the menu items.
+
+
+  [1m1.2 The File Requester[0m
+
+  Whenever you are required to enter a filename, PowerPacker sets up a file
+  requester.  This requester lists all files (and their length) in a selected
+  directory.  You don't have to wait for the directory scan to end, you can
+  select a file or directory the moment you see it, or you can enter it in
+  the appropriate string gadget.  Entries are sorted automatically and files
+  and directories are separated.  If you press Shift-Return in the file
+  string gadget you will activate the directory string gadget.  Pressing
+  Alt-Return in the file string gadget will activate the pattern string
+  gadget.
+  To get a list of all devices connected to your Amiga as well as all the
+  assigns made press the right mouse button or use the 'Disks' gadget.
+
+  If you wait for the directory scan to end and quit the file requester, the
+  next time you use it all the files will still be there, so you don't have
+  to wait for the directory to be read again.  This feature has one
+  disadvantage: if files are changed or added to the selected directory by
+  another program than PowerPacker they won't be shown in the list, or they
+  will be shown with the wrong file length, the next time the requester
+  appears.  Therefore, if you think anything has been changed in the selected
+  directory, use the 'Get' gadget to re-read the directory.
+
+  Use the 'Hide/Show .info' gadget to hide or show .info files (Workbench
+  icons).  The 'All' and 'Clear' gadget are used to select all files or to
+  clear the selection of all files, note that these gadgets are not always
+  available.  When the 'All' and 'Clear' gadgets are available you can also
+  extend-select filenames or use the 'Match..' gadget.  Extend-selecting is
+  done by Shift selecting additional files.  'Match..' brings up a requester
+  where you can enter a pattern to select files.
+
+
+                                        3
+
+
+
+  [1m1.3 The Basic Pull-down Menus[0m
+
+  1.3.1 Project Menu
+
+  The project menu contains the file manipulation options.  Most of them
+  speak for themselves:
+
+  Load File...       Load a file from disk and start the (de)crunching.  Stop
+                     crunching by clicking the 'Stop' gadget or by pressing
+                     Ctrl-C. Files crunched with other (supported) crunchers
+                     will be recognized and decrunched.
+  Save File...       Save the (de)crunched or processed file in memory to
+                     disk.
+  Save To...         Same as 'Save File...' except that the file requester
+                     uses a different buffer.  Very useful if you want to
+                     load several files from one directory and save them to
+                     another.
+  Delete File...     Delete a file on disk.
+  Read ASCII...      Read an ASCII (text) file using PPMore.  The first time
+                     you use 'Read ASCII...' PPMore will probably not be
+                     found and PowerPacker will ask you where it is.  Just
+                     use the file requester and select PPMore.  Save the
+                     preferences if you want PowerPacker to remember this the
+                     next time you run it.
+  Save Prefs...      Save current preferences to your boot disk.  The
+                     preferences will be saved in the file
+                     's:PowerPacker.prefs', this file will be 130 bytes long.
+                     When PowerPacker is first started it will attempt to
+                     load this file and adjust its preferences.
+  Toggle Workbench   Open or close Workbench if possible.  (Adds 42K!)
+  Iconify            Iconify PowerPacker on the Workbench Screen, this frees
+                     40-50K.
+  About...           Show general information.
+  Quit...            Quit the program.
+
+
+  1.3.2 Prefs Menu
+
+  The prefs menu contains all the (de)cruncher settings.  You can select to
+  (de)crunch command files, data files or LoadSeg files.  If you want the
+  crunched version of your file to be executable, select 'Command/Data'.
+  PowerPacker will now check if the file you want to crunch is a command file
+  (executables) or a data file (e.g. documents).  If it's an executable
+  PowerPacker will add a decrunch header to the crunched program so it will
+  decrunch itself, if it's a data file it will be saved as raw crunched data
+  (with a small data header).  If you want to crunch a file as data even
+  though it is a command select the 'Data File' option.  Select 'LoadSeg
+  File' if you wish to crunch a library, device, font, or other file loaded
+  by the dos.library function LoadSeg() for use with PPLoadSeg 1.1.  See the
+  documentation of PPLoadSeg for more information.
+
+
+
+
+
+                                        4
+
+
+
+  Crunched data files can be used with PowerPacker's Shell commands or
+  utilities that support PowerPacker, like PPMore.  The Shell commands are
+  discussed in section 7 of this manual.
+
+  The 'Decrunch Color' submenu contains the following options:
+
+  Color 0   The background color will change while decrunching.
+  Color 1   The text color changes.
+  Pointer   Only the mousepointer's color changes.
+  Scroll    Weird effect (just try it out!).
+  None      If your eyes are wearing out.
+
+  These items indicate what color will flash when a file is decrunching.  You
+  can change this option before saving a crunched file.  The default setting
+  is 'Pointer'.
+
+  In the 'Efficiency' submenu you will find the following items:
+
+  Fast        Use for small files, or for quick crunch.
+  Mediocre    Better but slower.
+  Good        Default, gains 40-50% in most cases.
+  Very Good   A few percent better than good.
+  Best        Gives best results (not always, small files sometimes crunch
+              best with 'Very Good' or even 'Good').
+
+  'Speedup Buffer' controls the size of the memory buffer used to speed up
+  crunching.  You have three choices:
+
+  Small    This takes from 2K to 32K (about 8 times faster than version 2.3b
+           or lower).
+  Medium   This takes from 4K to 64K (about 12 times faster).
+  Large    This takes around 200K (about 40-50 times faster)!  If your Amiga
+           only has 512K of memory you probably won't be able to use the
+           large speedup buffer.
+
+  The 'Screen Prefs' submenu allows you to change certain aspects of
+  PowerPacker's user interface.  It contains the following items:
+
+  Use Workbench Colors...  Use the same colors for PowerPacker's screen as
+                           the Workbench.
+  Change Palette...        Puts up a palette requester that allows you to
+                           change PowerPacker's screen colors.
+
+  The Kickstart 2.0 version of PowerPacker has following additional items
+  (some items may be ghosted):
+
+  PAL:Hires                Put PowerPacker's screen in PAL hires.
+  PAL:Hires-Interlace      Put PowerPacker's screen in PAL hires interlace.
+  NTSC:Hires               Put PowerPacker's screen in NTSC hires.
+  NTSC:Hires-Interlace     Put PowerPacker's screen in NTSC hires interlace.
+  Productivity             Put PowerPacker's screen in productivity mode.
+  Change Screen Font...    Change the screen's font.
+  Change Text Font...      Change text font, must be non-proportional.
+
+
+                                        5
+
+
+
+  The remaining preferences switches:
+
+  Data Suffix     Attach '.pp' suffix to data files after crunching or remove
+                  '.pp' after decrunching.  It is advised that you leave this
+                  switch on so you can easily spot crunched data files.
+  BCPL Header     Select this if you want the special decrunch header for
+                  BCPL programs (soon to be a thing of the past :-).  The
+                  Workbench 1.2/1.3 C: directory contains such programs.
+                  Workbench 2.0 C: does NOT. So if you use Workbench 2.0
+                  leave this switch off.
+  Auto HunkLab    File is put through the HunkLab before crunching when you
+                  select 'Load File...', this way you can e.g. automatically
+                  remove symbol and debug hunks (see section 3).
+  Auto Recrunch   If the file is crunched with an alien cruncher it is not
+                  only decrunched, but it is also recrunched.
+  Copy Icon       Make PowerPacker copy the icon of a file it (de)crunches.
+  Library Header  Selects decrunch header that uses 'powerpacker.library'.
+                  This decrunch header is much shorter and better suited for
+                  possible future enhancements.  It is therefore recommended
+                  that you use it from now on.
+                  IMPORTANT: Before you can use the 'Library Header' option
+                  you must copy 'powerpacker.library' to your Libs:
+                  directory.  If this is not done programs using the library
+                  header simply won't run!  NO ERROR CODES OR MESSAGES!
+  Encrypt File    See section 1.3.3 of this manual.
+  LED Crunch      Your power-LED will flash while crunching.  Now, you can
+                  even turn off your monitor and still see when the cruncher
+                  has finished.
+  Paging          Pause and wait for mouse button or key when the supervisor
+                  window fills up.
+  Overwrite       Don't prompt if it's ok to overwrite a file when saving.
+                  Always overwrite.
+  Sound Alarm     When this is on PowerPacker beeps when done with crunching.
+
+
+  1.3.3 Encryption
+
+  When the 'Encrypt File' switch is on PowerPacker will not only crunch
+  files, it will also encrypt them so nobody else but you can decrunch them.
+  Just before crunching a file PowerPacker will ask you for a password.  Your
+  password can be up to 16 characters long, any character is accepted,
+  lowercase and uppercase are DIFFERENT! You will be presented with a string
+  gadget with a special feature, it won't show you what you are typing!
+  After entering your password you will be asked to enter it again, this is
+  done to verify that you haven't made a typing error (watch out you don't
+  make the same error twice :-).
+
+  You can also use the 'Last' gadget to re-enter your last password again, or
+  the 'Abort' gadget to abort encryption and just crunch the file.  Take care
+  when using the 'Last' gadget, be sure to remember what your last password
+  was.
+
+  When you try to load a crunched encrypted file PowerPacker will once again
+
+
+                                        6
+
+
+
+  prompt you for your password.  If you enter the correct one the file will
+  be decrypted and decrunched.  If you don't know the password, bad luck,
+  THERE IS *NO* WAY YOU CAN DECRUNCH THIS FILE! So don't forget your
+  password!
+
+  From version 3.0a onwards PowerPacker also encrypts executables.  When you
+  run an encrypted executable you will be prompted for the password.  A small
+  window will open and you have 3 chances to type your password followed by
+  Return.  Unless you are using the library header there is no possibility to
+  correct typing mistakes, this would have made the decrunch header too long.
+
+  Please note that encryption can not be used in a script.
+
+
+
+  [1;4m2 Recrunching[0m
+
+  This menu is provided for the people who were using another cruncher or an
+  older version of PowerPacker.  Just select 'Recrunch File...' or 'Recrunch
+  Always...' and load the file.  PowerPacker will start the correct decrunch
+  algorithm.  If you selected 'Recrunch File...' PowerPacker will start to
+  crunch the decrunched file.  If you select 'Recrunch Always...' PowerPacker
+  will always recrunch, even if the file was crunched with PowerPacker 4.0a.
+  Useful for recrunching files using a higher efficiency (e.g. recrunch a
+  file crunched with 'Fast' now using 'Best').
+
+  If you select 'Load File...' and PowerPacker recognizes an alien crunched
+  file it will decrunch it for you, if you have switched 'Auto Recrunch' on
+  the decrunched file will be recrunched with PowerPacker.  If the 'Auto
+  Recrunch' switch is on the 'Load File...' menu option actually replaces the
+  'Recrunch File...' menu option.  'Decrunch Only...' will load and decrunch
+  a file without recrunching it, even if 'Auto Recrunch' is on.
+
+  Use the 'Change Color...' item to change the decrunch color in an already
+  crunched file to the current decrunch color.  Please note that the file
+  will be changed on disk, nothing will be loaded into memory.
+
+  Crunchers currently supported are: ANC Cruncher, TNM Cruncher 1.1,
+  Relokit 1.0, HQC Cruncher 2.0, MasterCruncher 3.0, DragPack 1.0b,
+  TurboSqueeze 5.1, Titan Cruncher 1.1, The Imploder 4.0 and older
+  PowerPacker files.  If you'd like to see other crunchers supported, send me
+  the cruncher and some programs crunched with it.  If it is possible to
+  develop a decrunch algorithm I will include it in the next version of
+  PowerPacker.  Please note that 'Decrunch Only...'  is not 100% guaranteed
+  for Relokit 1.0 files, 'Recrunch File...'  however is!  (It's a strange
+  world! :-)
+
+  Several people sent me 'dirty' crunchers, these are crunchers that use
+  absolute addresses (an absolute TABOO!!).  It is impossible to develop a
+  decrunch algorithm for these.  (In fact, nothing should have been crunched
+  with these crunchers in the first place!).
+
+
+
+
+                                        7
+
+
+
+  [1;4m3 The Hunklab[0m
+
+  [1m3.1 Hunklab Preferences[0m
+
+  This menu is not really part of the PowerPacker crunch/decrunch routines
+  but it wasn't worth writing a separate program for and a HunkLab is after
+  all a very interesting utility.  You can e.g. use it to remove symbol and
+  debug hunks from files that wouldn't crunch otherwise.  Debug and symbol
+  hunks are only used in debuggers, so unless you want to debug the program,
+  you can remove them.
+
+  You can force a program's code, data or BSS (uninitialized data) into Chip
+  RAM or you can remove symbol tables and debug information just by toggling
+  the appropriate switch on or off.
+
+
+  [1m3.2 Process File[0m
+
+  'Process file...' reads the file from disk and changes it according to your
+  preferences.  To save the processed file, use 'Save File...' from the
+  'Project' menu.
+
+  'Process & Crunch...' will process the file and crunch the file afterwards
+  (if possible).  To save use 'Save File...'.
+
+
+  [1;4m4 Scripts[0m
+
+  The script is something that will save you a lot of time, it allows you to
+  record a number of different commands to be executed after each other.  It
+  is ideal for crunching a lot of files in one go.  It also offers you the
+  possibility to delete the source files after crunching, so you can easily
+  crunch a directory full of data files and delete the source files after the
+  crunched files with '.pp' suffix are saved.  Menu options are:
+
+  Clear Script         Clear the script.
+  List Script          List script to the powervisor window.  Ctrl-C aborts.
+  Script Log File...   Is used to specify a file to redirect output to.  If
+                       you cancel the requester no log file is used.
+  Destination Dir...   Specify the destination directory to save files to.
+  Start Recording...   Start recording a script.  If the script was empty you
+                       will be asked for the destination directory.
+                       You will have two choices here: 'Manual Select' or
+                       'Auto Dest'.  'Auto Dest' means the destination
+                       directory will always be the same as the source
+                       directory.  This is very useful if you wish to crunch
+                       lots of programs in different directories and want the
+                       crunched programs to be saved in the same directory as
+                       the original.  Manual select allows you to manually
+                       select a destination directory.  After selecting the
+                       destination you can start entering the script
+                       commands.  Ghosted items are unavailable as commands.
+                       Just enter everything as if you were actually using
+
+
+                                        8
+
+
+
+                       PowerPacker, with one big difference: you can select
+                       more than one file at a time in the file requester.
+                       When you then press 'Add' all the selected files will
+                       be entered in the script.  You can also use the 'All',
+                       'Match..'  and 'Clear' gadgets as described in
+                       section 1.2.  You can still change the destination
+                       directory while recording.
+                       Every command you enter will be displayed in the
+                       supervisor window.
+  Stop Recording       Stop script recording.
+  Delete Command...    Use to delete a specific command, you will be prompted
+                       for the command number.
+  Insert Commands...   Use to insert new commands after another one.  You
+                       will be asked after which command you want to insert
+                       something.  Enter the command number.
+  End Insert           End inserting of commands.
+  Skip Crunched Files  When you enter this switch in the script PowerPacker
+                       will skip crunched files rather than decrunch them.
+                       Select again to turn off.
+  Delete Source Files  This switch tells PowerPacker to delete the source
+                       file after it has crunched (and saved) it to the
+                       destination.  Select again to turn off.
+  Delete Source Quick  The same as the previous switch but now the source is
+                       deleted BEFORE the crunched file is saved (useful for
+                       when source and destination are on the same disk and
+                       the disk is almost full).  Select again to turn off.
+  Execute Script...    Will start the playback of the script commands.  The
+                       screen will turn grey to indicate a script is
+                       executing.  While executing a script, PowerPacker will
+                       always act destructive!  Files will always be
+                       overwritten and deleted, no confirmations!
+                       If you press the menu button a requester will appear
+                       to ask you if you want to abort the script execution.
+                       After executing the script a request to clear the
+                       script will appear.
+
+  After the script has executed you will be presented with the script
+  statistics.  This way you can see what the overall gain was.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        9
+
+
+
+  +--------------------------------------------------------------------------+
+  |  Scanning file 'df0:System/CLI'...                                       |
+  |                                                                          |
+  |  Loading command file...                                                 |
+  |                                                                          |
+  |  Hunk_header (0x03F3)                                                    |
+  |     9 hunks (0 to 8).                                                    |
+  |  Hunk 0 : Hunk_code (0x03E9)     (524 bytes)                             |
+  |           Hunk_reloc32 (0x03EC)                                          |
+  |  Hunk 1 : Hunk_data (0x03EA)     (428 bytes, 0 BSS)                      |
+  |  Hunk 2 : Hunk_code (0x03E9)     (472 bytes)                             |
+  |           Hunk_reloc32 (0x03EC)                                          |
+  |  Hunk 3 : Hunk_data (0x03EA)     (52 bytes, 0 BSS)                       |
+  |  Hunk 4 : Hunk_code (0x03E9)     (16 bytes)                              |
+  |  Hunk 5 : Hunk_code (0x03E9)     (0 bytes)                               |
+  |  Hunk 6 : Hunk_code (0x03E9)     (196 bytes)                             |
+  |           Hunk_reloc32 (0x03EC)                                          |
+  |  Hunk 7 : Hunk_code (0x03E9)     (68 bytes)                              |
+  |           Hunk_reloc32 (0x03EC)                                          |
+  |  Hunk 8 : Hunk_data (0x03EA)     (0 bytes, 0 BSS)                        |
+  |  Preprocessing file...                                                   |
+  |  Crunching command file...                                               |
+  |  100% crunched.                                                          |
+  |  Done.                                                                   |
+  |  Original length: 2356 bytes.                                            |
+  |  Crunched length: 1204 bytes.                                            |
+  |  Gained 49% (1152 bytes)!                                                |
+  +--------------------------------------------------------------------------+
+
+                   Figure 1:  Sample supervisor window output
+
+
+  [1;4m5 The Supervisor Window[0m
+
+  This window displays all kind of useful information like the file status,
+  crunch messages and error messages.  You can follow all steps, from the
+  original file that is loaded into memory, to the final crunched version on
+  disk.
+  When an executable file is loaded, its hunk information is displayed.  This
+  information is rather technical, but it can be useful for programmers.  If
+  you're not interested, just ignore it.
+
+
+  [1;4m6 A Sample Session[0m
+
+  Now that PowerPacker's capabilities have been explained, it's time for a
+  little demonstration.  Let's say we want to crunch the 'CLI' command in the
+  System directory on your Workbench 1.2 disk.
+
+  Select 'Pointer' in the 'Decrunch Color' menu.
+
+  Set 'Prefs' to 'Command/Data'.  Now select 'Load File...' in the Project
+  menu (the file requester will appear), insert your Workbench 1.2 disk and
+
+
+                                       10
+
+
+
+  choose the 'CLI' command in the system directory.  Now you'll see a lot of
+  hunk (or junk ? :-) information about the 'CLI' command.  PowerPacker will
+  now open a window and start crunching.  During crunching you will get an
+  indication of how far the crunching has already progressed and how much the
+  gain so far was.  After some time your screen will look something like
+  figure 1.
+
+  The only thing you have to do now is use 'Save File...' to save the file
+  back to disk as an executable file.  Now enjoy the crunched 'CLI' command.
+
+
+  [1;4m7 Shell Commands[0m
+
+  For your convenience, two Shell commands are provided, one to crunch and
+  one to decrunch data files.  Note that these commands only (de)crunch DATA
+  files!  So to (de)crunch executable files, you'll still have to use
+  PowerPacker.
+
+  Both version 3.0b and 4.0a of these Shell commands are included with this
+  version of PowerPacker.  Version 3.0b commands run on Kickstart 1.2
+  and 1.3, while the 4.0a commands only run on Kickstart 2.0 and higher.
+
+  The 3.0b commands use the 'arp.library', so make sure it is present in your
+  Libs: directory if you plan to use them.  The 4.0a commands do not use arp,
+  but they do use 'powerpacker.library'.  This should already be in Libs:
+  because PowerPacker uses this as well.
+
+  A usage line is given by typing 'Crunch ??'  or 'Decrunch ??', or in case
+  of the 3.0b commands, 'Crunch' or 'Decrunch' without arguments (see
+  figure 2).  These commands are useful to be included in shell scripts or to
+  read crunched text files quickly.
+
+  Some examples:
+
+    Crunch df0:source/#?.c TO RAM:source NOLED
+
+  This will result in a crunching of every C program in the df0:source
+  directory.  If the RAM:source directory exists the files will be saved
+  there, if it doesn't it will be created if there is more than one C program
+  in df0:source.  The '.pp' suffix will be attached to the filenames.  The
+  led will not flicker.  Crunching can be aborted by pressing Ctrl-C.
+  Note that the Crunch command defaults to using the largest crunch buffer.
+  You can use the medium buffer using the FAST switch and the small buffer by
+  using the SLOW switch on the command line.
+
+    Decrunch >PRT: QUIET dh0:progs/#?.asm.pp OPT BF COL 2
+
+  Every crunched assembly program will be decrunched and printed, before each
+  file a banner will be printed, each file will start on a new page.  If the
+  file is encrypted you will be prompted for a password.  It is very
+  important that you use the QUIET option here, if you don't the copyright
+  and information lines will also be printed.  The mouse pointer will flash
+  while decrunching.
+
+
+                                       11
+
+
+
+  +--------------------------------------------------------------------------+
+  |  1> Crunch                                                               |
+  |  PowerPacker Professional 4.0a Data Cruncher                             |
+  |  Copyright (c) Nico Francois                                             |
+  |  Usage: Crunch <source> [<destination>] [EFFICIENCY 1-5] [CRYPT]         |
+  |                         [NOSUFFIX] [NOLED] [NOPER] [SLOW] [FAST]         |
+  |  With:                                                                   |
+  |   EFFICIENCY: 1:Fast, 2:Mediocre, 3:Good (def), 4:Very Good, 5:Best      |
+  |   CRYPT     : Encrypt file.                                              |
+  |   NOSUFFIX  : No '.pp' suffix.                                           |
+  |   NOLED     : No flashing led.                                           |
+  |   NOPER     : No percentage.                                             |
+  |   FAST      : Fast crunch.                                               |
+  |   SLOW      : Slower crunch.                                             |
+  |  Hit ^ C to abort, ^ E or ^ F to abort crunching only.                   |
+  |                                                                          |
+  |  1> Decrunch                                                             |
+  |  PowerPacker Professional 4.0a Data Decruncher                           |
+  |  Copyright (c) Nico Francois                                             |
+  |  Usage: Decrunch <source> [<destination>] [COLOR 0-4] [OPT B|F] [SKIP]   |
+  |                                           [QUIET]                        |
+  |  With:                                                                   |
+  |   COLOR: 0/1:Color 0/1, 2:Pointer (def), 3:Scroll, 4:None                |
+  |   SKIP : Skip uncrunched files.                                          |
+  |   QUIET: Be quiet.                                                       |
+  |  If <destination>  is  '*'  or  is  omitted,  files will  be  typed  to  |
+  |  Output().                                                               |
+  |  Options effective when typing:                                          |
+  |   OPT B: print a banner before and                                       |
+  |   OPT F: print a formfeed after each file.                               |
+  |  Hit ^ C to abort, ^ E or ^ F to abort typing only.                      |
+  +--------------------------------------------------------------------------+
+
+                   Figure 2:  Crunch & Decrunch Shell commands
+
+
+  [1;4m8 Public Screen[0m
+
+  When run on Kickstart 2.0 PowerPacker will make its screen public.  This
+  means that other programs that support public screens will be able to open
+  windows on the PowerPacker screen.  PowerPacker will only close its screen
+  once all these visitor windows are closed.
+
+  If you run PowerPacker more than once only the first PowerPacker will make
+  its screen public.  All other PowerPackers will have a private screen (the
+  screen title will show this).
+
+  The name of the public screen is 'PowerPacker' (mind case!).
+
+
+
+
+
+
+
+                                       12
+
+
+
+  +--------------------------------------------------------------------------+
+  |  /* example ARexx script */                                              |
+  |  options results                                                         |
+  |  address POWERPACKER                                                     |
+  |  ezrequest 'Testing PowerPacker ARexx EZRequest'                         |
+  |  if rc = 5 then                                                          |
+  |     say "You pressed 'Ok'."                                              |
+  |  else                                                                    |
+  |     say "You pressed 'Cancel'."                                          |
+  |  getfilename                                                             |
+  |  say 'Name of file loaded:' result                                       |
+  |  autorecrunch read                                                       |
+  |  if rc = 5 then                                                          |
+  |     say 'Auto Recrunch is on.'                                           |
+  |  else                                                                    |
+  |     say 'Auto Recrunch is off.'                                          |
+  |  say 'End of example.'                                                   |
+  +--------------------------------------------------------------------------+
+
+                         Figure 3:  Example ARexx script
+
+
+  [1;4m9 ARexx[0m
+
+
+  PowerPacker 4.0a features a full ARexx interface.  Just about all functions
+  can be controlled from ARexx, even when PowerPacker is iconified.
+
+  The ARexx port is called 'POWERPACKER'. Only the first PowerPacker started
+  will have an ARexx port, the same PowerPacker that has a public screen.
+
+  You can start an ARexx script from within PowerPacker.  Use the item
+  'Execute Script...' from the 'ARexx' menu to execute an ARexx script.
+  The script will be searched for in the current directory and REXX:, with a
+  default extension of '.pprx'.
+
+  The 'ARexx' menu has following items:
+
+  Execute Script...  Execute an ARexx script (see above).
+  Assign Script...   Assign an ARexx script to one of the 10 provided menu
+                     items.  To clear a script enter an empty string.
+  [10 script items]  Picking one of these items will result in the execution
+                     of the ARexx script you assigned to it.
+  Load Scripts...    Load 10 ARexx script names from disk.
+  Save Scripts...    Save current 10 ARexx script names to disk.  If you save
+                     to 'S:PowerPacker.ARexxScripts' these script names will
+                     be loaded at startup.
+
+  A small example ARexx script is provided on the PowerPacker disk.  It's
+  called 'example.pprx'.  Load a file and then try executing 'example' by
+  using 'Execute Script...'.  See figure 3 for a listing of the script.
+
+
+
+
+                                       13
+
+
+
+  Don't forget to put 'options results' at the start of your ARexx program if
+  you intend to use commands that will return something in the rexx variable
+  'result'.
+
+  A list of all PowerPacker ARexx commands:
+
+  o Using one the following commands has the effect of selecting the menu
+    item with the same (or similar) name.  Omitting <fname> will bring up the
+    file requester.  All these commands (except 'Read') will return an error
+    code of 5 in the rexx variable 'rc' if an error occurred.
+
+    - Load [<fname>]
+      If rc is 0 a file has been crunched, the variable result will hold the
+      following:
+      'gainpercentage gainbytes crunchedlenbytes',
+      if rc is 1 a file has been decrunched, result will be the following:
+      'decrunlenbytes'.
+    - Save [<fname>]
+    - Read [<fname>]
+    - SavePrefs
+    - ToggleWorkbench
+    - Iconify
+    - Recrunch [<fname>]
+      The variable result will hold the same as with 'Load [<fname>]'.
+    - RecrunchAlways [<fname>]
+      The variable result will hold the same as with 'Load [<fname>]'.
+    - DecrunchOnly [<fname>]
+      The variable result will hold the same as with 'Load [<fname>]'.
+      An error is returned if the file is not crunched.
+    - ChangeColor [<fname>]
+    - ProcessCrunch [<fname>]
+      The variable result will hold the same as with 'Load [<fname>]'.
+    - Process [<fname>]
+
+  o To select the file type.
+
+    - CommandFile
+    - DataFile
+    - LoadSegFile
+
+  o To select the speedup buffer.
+
+    - SpeedupSmall
+    - SpeedupMedium
+    - SpeedupLarge
+
+  o To select the decrunch color.
+
+    - DecrColor0
+    - DecrColor1
+    - DecrPointer
+    - DecrScroll
+    - DecrNone
+
+
+                                       14
+
+
+
+  o To select the efficiency.
+
+    - EffFast
+    - EffMedium
+    - EffGood
+    - EffVeryGood
+    - EffBest
+
+  o The following commands are switches, for their effect see the explanation
+    of the Prefs and HunkLab menus.  Using the 'Read' option returns 5 in the
+    rexx variable rc if the switch was on.
+
+    - DataSuffix On|Off|Read
+    - BCPLHeader On|Off|Read
+    - AutoHunklab On|Off|Read
+    - AutoRecrunch On|Off|Read
+    - LibraryHeader On|Off|Read
+    - EncryptFile On|Off|Read
+    - LedCrunch On|Off|Read
+    - Paging On|Off|Read
+    - Overwrite On|Off|Read
+    - SoundAlarm On|Off|Read
+    - Code2Chip On|Off|Read
+    - Data2Chip On|Off|Read
+    - Bss2Chip On|Off|Read
+    - RemoveSymbol On|Off|Read
+    - RemoveDebug On|Off|Read
+
+  o These commands are special commands only accessible from ARexx.
+
+    Uniconify         Un-iconifies PowerPacker, no action if not iconified.
+                      rc: 5 if an error occurred, 0 if all went ok.
+    PurgeBuffers      Free all buffers, current file in memory will be lost.
+    PP2Front          Bring the PowerPacker screen to front.  Uniconifies
+                      PowerPacker if needed.
+    GetFileName       Puts the name of the currently loaded file in 'result'.
+                      (Empty string if no file loaded)
+    GetPath           Puts the path of the currently loaded file in 'result'
+                      (empty string if no file is loaded).
+    GetFullName       Puts the the full pathname of the currently loaded file
+                      in 'result'.  (Empty string if no file loaded)
+    EZRequest <msg>   Put up a requester on the PowerPacker screen (or the
+                      Workbench if iconified) displaying <msg>.  There will
+                      be two possible answers to the requester: 'Ok' and
+                      'Cancel'.
+                      rc: 5 if 'Ok' was pressed, 0 if 'Cancel' was.
+    Notify <msg>      Put up a requester on the PowerPacker screen (or the
+                      Workbench if iconified) displaying <msg>.  There will
+                      only be one possible response: 'Proceed'.
+    ConOutput On|Off  If PowerPacker is iconified the output that would
+                      normally go to its screen will go to the console an
+                      ARexx script is started from.  Use this command to
+                      switch this output off (or back on).
+
+
+                                       15
+
+
+
+  [1;4mA Program History[0m
+
+  VERSION 1.0a
+
+    o First release.
+
+
+  VERSION 1.1a
+
+    o Fixed bugs.
+    o Improved crunch algorithm by about 5%.
+    o 'Delete' and 'Multitask' switch added.
+    o Better menu structure.
+    o Improved the file requester.
+    o Written CLI commands.
+
+
+  VERSION 2.0a
+
+    o Fixed some more bugs.
+    o Added buffer and automatic device-list to the file requester.
+    o Added 'LED Crunch', useful for turning the monitor off while crunching,
+      and 'Paging'.
+    o New header, bug fixed.  (1.1 didn't free mem when started from
+      Workbench)
+    o Added HunkLab.
+    o Improved CLI commands.
+
+
+  VERSION 2.1a
+
+    o Fixed last bug in header (2.0 crashed when you were out of memory).
+    o Added script feature, now possible to crunch files overnight.
+    o Improved requesters.
+    o Automatic crunch/decrunch.
+    o Improved menu structure considerably.
+    o Intelligent recrunch implemented.
+    o Automatic crunch/decrunch.
+    o Added 'Color Crunch' option.
+    o New efficiency 'Best' added.
+
+
+  VERSION 2.1b
+
+    o Bug fixed in script abort.
+    o Added ability to open a log file during script execution.
+    o Now possible to recrunch PowerPacker files with a higher efficiency.
+    o Recrunch detects unsupported crunchers a lot faster.
+    o PowerPacker now automatically opens a PAL/NTSC screen.
+
+
+
+
+
+
+                                       16
+
+
+
+  VERSION 2.2a
+
+    o All known bugs (or better, undocumented features) fixed.
+    o 'Sleep' mode implemented, useful for multitasking freaks.
+    o While crunching the gain percentage so far is displayed.
+    o Recrunch now supports 'HQC Cruncher 2.0', 'MasterCruncher 3.0' and
+      'Dragpack 1.0'.
+    o New graphics in title.
+
+
+  VERSION 2.3a
+
+    o PowerPacker detaches itself from the CLI, so the CLI window can be
+      closed or used for other things.
+    o CLI commands are greatly enhanced, they now use ARP.
+    o New switch: 'Overwrite' to suppress 'OK to overwrite ?'  request.
+    o File requester now able to sort files, 'Sort files' switch.
+    o By popular demand: encryption of data files is now possible using the
+      new 'Encrypt Data' switch.  Encryption should be IMPOSSIBLE to crack!
+    o Also by popular demand: Now possible to save preferences to boot disk.
+    o More memory efficient decrunch and recrunch of PowerPacker files.
+    o Decrunch source included, so other programs could be written that would
+      load data files crunched with PowerPacker.
+    o 'Data Suffix' switch to improve adding/removing of '.pp' suffix.
+    o Decrunch color default 'Pointer'.
+    o Improved scanning of files when loading or recrunching.
+    o Fixed small bug (version 2.2a lost 256 bytes every time it was run).
+    o More info in about window.
+
+
+  VERSION 2.3b
+
+    o Added 'Change Color' in 'Recrunch' menu to change the decrunch color of
+      an already crunched file.
+    o PowerPacker now starts up a process with priority -1.  It now no longer
+      slows down the rest of the system (e.g. a CLI) when crunching.
+    o New 'Verify sleep' switch to toggle the requester that verifies the
+      sleep function on/off.
+    o Now possible to skip files already crunched with PowerPacker in script.
+    o Bug fixed in 'Recrunch', ANC files were no longer recognized.  Oops :-)
+
+
+  VERSION 3.0a
+
+    o FIRST COMMERCIAL VERSION, *MAJOR* UPDATE!
+    o FAST!!  40-50 times faster crunching than previous versions!!!  Three
+      different speeds selectable.  Multitask switch removed, no longer
+      needed.
+    o Full overlay support!! (crunches e.g. DPaint III)
+    o Decrunching 20% faster.
+    o Crunches up to 5% better (yippee :-)
+    o Recrunch now supports 'TurboSqueeze', 'Titanics' and 'Imploder'.
+
+
+
+                                       17
+
+
+
+    o Decrunch header more memory efficient, you can now also decrunch and
+      run programs larger than 250K on a 512K machine.
+    o Script much more powerful:
+      - Insert #, Delete #.
+      - Skip crunched files.
+      - Delete source files (safe or quick).
+      - Maximum number of script commands user-definable.
+    o Automatic hunklab and automatic recrunch switches.
+    o Recrunches data files.
+    o Encrypted executables!!  Protect your programs as well as data!
+    o File requester much improved:
+      - user-friendlier sorting, no more file-chasing!
+      - files/directories separated.
+      - show/hide .info files.
+      - extended selection possible (including ALL and CLEAR gadgets, for use
+        in script).
+      - drag-bar, position is remembered for the next time you use it.
+      - shows all devices attached as well as all assigns made.
+      - 7 entries on screen at once (previously 6).
+      - supports Shift-Return "standard" to jump from file to dir gadget.
+    o Switch for BCPL programs added (Workbench 1.3 C: directory)
+    o Position of the small sleep-window is remembered, so the window will
+      open where you last left it.
+    o Read (crunched) text files from within PowerPacker (using PPMore).
+    o Sound alarm.
+    o Extended menu selecting now supported.
+    o Script prints statistics after execution.
+    o Before saving, length of crunched file is compared to original length.
+    o Abort now only works when PowerPacker screen is active, no more
+      problems when multitasking.
+    o CLI commands improved:
+      - reentrant, can be made resident and run from several CLI's at once.
+      - also 40-50 times faster.
+      - shorter code
+      - 'Crunch NOSUFFIX' bug fixed.  Used to delete original file if source
+        and destination where the same and crunching was aborted.
+
+
+  VERSION 3.0b
+
+    o Revamped user interface, all new 'Workbench 2.0' 3D look :-) Still runs
+      on Kickstart 1.3!
+    o Supports 'powerpacker.library'.  You can now save executables with a
+      much smaller decrunch header that uses 'powerpacker.library'.
+    o Screen colors are now saved with preferences so they can be changed by
+      the user.
+    o Small bug fixed in script auto-delete.  Wouldn't delete data files
+      after DE-crunching them.
+    o When run on Kickstart 2.0 the PowerPacker screen is made public.
+    o Some bug fixes:
+      - Fixed 'Auto Recrunch' bug, it simply didn't work :-(
+      - Script now correctly records 'Auto Recrunch'.
+      - Recrunching of data files is now fully functional.
+
+
+                                       18
+
+
+
+  VERSION 4.0a
+
+    o Uses and requires 'powerpacker.library' version 35 or higher.
+    o Uses and requires 'reqtools.library' version 37 or higher.
+    o Crunches commands up to 10% better!
+    o Full ARexx interface implemented!  If you find PowerPacker's script
+      functions too limiting you can now write your own ARexx macros.  ARexx
+      port name is POWERPACKER.
+    o Menus are larger and (hopefully) clearer.  All important items have
+      keyboard shortcuts.
+    o Now possible to crunch LoadSeg files.  This includes libraries and
+      devices.  Crunched LoadSeg files are saved in a special format for use
+      with PPLoadSeg 1.1 or higher.
+    o Screen will auto-adjust to Workbench screen size.
+    o A standard wait pointer is used while loading and saving.
+    o Starting PowerPacker twice will bring up a requester asking you if you
+      want to run another copy or pop the old copy to the front.
+    o Pressing Amiga-Amiga-P will bring PowerPacker's screen to the front.
+    o Crunching progress is displayed using a progress bar, much nicer :-)
+      Crunching can now be stopped by clicking a 'Stop' gadget or pressing
+      Ctrl-C.
+    o 'Set # Commands' removed, script can be as large as memory permits.
+    o Script destination can be automatically set to source directory.
+    o Script inserting much improved.
+    o Script listing may be aborted by pressing Ctrl-C.
+    o 'Save To...' function added to menu: has a different buffer than the
+      other requesters.  This makes it much easier to load some files from
+      one directory and save them to another.
+    o 'Sleep' is now called 'Iconify'.
+    o 'Verify Sleep' switch removed.  Buffers are no longer purged because
+      you can still ask PowerPacker to (de)crunch files using ARexx while it
+      is iconified.
+    o 'Color Crunch' switch removed, was rather silly.
+    o Improved requesters, much nicer looking (ReqTools).
+    o File requester much improved, uses screen font, shows more files on
+      screen and has a pattern gadget (ReqTools).
+    o File requester buffer is updated automatically by PowerPacker whenever
+      a file is added, removed or changed (saved, deleted,...).
+    o Colors can be changed using a palette requester (ReqTools).
+    o 'Save Prefs...' moved to Project menu.
+    o Copies and deletes icons belonging to files (if icon.library is
+      available and 'Copy Icon' is switched on).
+    o Recrunching supports Imploder 1.0 to Imploder 4.0, including library
+      imploded files and overlayed imploded files.
+    o Added 'Decrunch Only...'  to Recrunch menu.
+    o Has been fully tested using enforcer and mungwall debugging tools.
+    o Processor caches are cleared in decrunch headers after loading and
+      relocating code.  This should insure 68040 compatibility.  Only applies
+      to Amigas running Kickstart 2.0 (V37).  I have not been able to test
+      this.
+
+
+
+
+
+                                       19
+
+
+
+    *** Kickstart 2.0 only!  ***
+    The following features are only available in the Kickstart 2.0 version
+    of PowerPacker.  This version requires release 2.0 of the Amiga
+    operating system to run.  It is advised you use it in combination with
+    the special 2.0 version of reqtools.library.
+
+    o Contains embedded version string (for use with 2.0 Version command).
+    o Possible to open PowerPacker screen in a multitude of resolutions
+      (interlace, productivity,...).
+    o Screen will auto-adjust to current overscan settings.
+    o Screen font and text font are user-definable.  Fonts can be selected
+      using a font requester (ReqTools).
+    o Password entry improved: cursor now moves to give better feedback.
+    o 'Sleep' is now called 'Iconify' and does EXACTLY that.  It uses the new
+      Workbench 2.0 AppIcon feature.
+    o Shell commands rewritten for Kickstart 2.0, shorter code.
+    o ARexx output console opens on PowerPacker screen, instead of Workbench.
+    o Has an ARexx menu with the possibility to enter your 10 favourite
+      scripts.  It is also possible to load and save these script names.
+
+    *** Release 3-Feb-92 ***
+    o Bug fixes.
+    o Kickstart 1.3 version of PowerPacker now also has ARexx menu.
+    o ARexx error reporting improved, distinction unknown command/script.
+    o Files crunched with Imploder 4.0 (SHORTROOT library header) and 3.0
+      (library header) are now recognized correctly.
+    o Protection bits (except pure bit) and comments of files are preserved.
+
+    *** Release 7-Mar-92 ***
+    o Small bug fixes.
+    o Release 1.0d of reqtools.library included.
+    o Release 1.4 of powerpacker.library included (20% faster decrunching!).
+
+
+  [1;4mB Acknowledgements[0m
+
+  PowerPacker Professional 4.0a written by Nico Francois (yes, Nico is my
+  first name :-)
+
+  Special thanks go to:
+
+  - Luc Pauwels for writing the 2.0a manual,
+  - Jorrit Tyberghein, Ives Aerts, Philip Marivoet and Peter Stuer for the
+    extensive debugging.
+  - Christian Morant for the late night 'turbo' hack :-)
+  - Kenny for his invaluable suggestions.
+  - a very special thank you to all the people who supported the shareware
+    versions of PowerPacker.
+
+  Copyright (c) 1991/1992 Nico Francois
+
+  Distributed by UGA Software and JumpDisk.
+
+
+
+                                       20
+

@@ -1,0 +1,9 @@
+
+; Script file to install PowerSnap 1.1
+
+Echo "*nPowerSnap 1.1 Installation Script*n"
+Copy PowerSnap C:PowerSnap
+Copy PowerSnap.info C:PowerSnap.info
+Copy powersnap-handler L:powersnap-handler
+Echo "PowerSnap copied to your C: directory.*npowersnap-handler copied to your L: directory.*n"
+
