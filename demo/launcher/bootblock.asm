@@ -1,3 +1,8 @@
+; This bootblock is heavily based on the one from Dep/TBL.
+; Changes by Axis/Oxyron: - Changed memory allocation to handle chipmem only machines with >= 1 MB chipmem
+;			  - Some size optimizations
+;			  - The interface to the following framework stage
+
 ; vim: syntax=asm68k ts=8 sw=8
 
 FUNCDEF		MACRO
