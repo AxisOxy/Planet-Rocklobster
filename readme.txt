@@ -6,7 +6,7 @@ This is just a showcase of how we "Oxyron" make Amiga demos.
 So this is more useful for the advanced user/coder as for beginners.
 I am not starting to awnser questions like: "What is Amiga, what is a demo, what is UAE, what is assembler, ...?".
 Google and Wikipedia can pretty much help you on these things.
-You can try using our full framework and follow our workflow, but i´m not sure if this is going to work.
+You can try using our full framework and follow our workflow, but iÂ´m not sure if this is going to work.
 Even though i tried to add some documentation and examples.
 But I am sure some of you will find interesting partial solutions for problems they struggle for a long time.
 E.g. Doynax ultrafast packer or the automation of MOD to P61 conversion.
@@ -32,6 +32,7 @@ Serveral code snippets taken from:
 
 WinUAE Demo ToolChain - http://www.pouet.net/prod.php?which=58703
 Photon/Scoopex  - http://coppershade.org/asmskool/SOURCES/Photon-old-snippets
+Bookblock Copyright (c) Andreas Fredriksson 2012
 
 
 Known issues and advices:
@@ -87,7 +88,7 @@ The basic blocks of the framework are trackloader, depacker, soundplayer, memory
 
 The trackloader is based on Photon/Scoopex old MFM-loader and is used to load tracks/sectors from an Amiga floppy disk.
 
-The packer/depacker is a 68K optimized version of the famous "Doynamite" packer on C64 done by Johan "Doynax" Forslöf.
+The packer/depacker is a 68K optimized version of the famous "Doynamite" packer on C64 done by Johan "Doynax" ForslÃ¶f.
 It is used to depack LZ-compressed data after loading it from disk. The depacking is unbelievable fast (about 180KB/s on a stock Amiga 500).
 
 The soundplayer is "The player P61" by Guru/Sahara Surfers and Photon/Scoopex. The fastest player and most compact MOD-compatible fileformat available on Amiga.
@@ -108,11 +109,11 @@ If you take care of a few simple rules (see "Known issues and advices") every va
 So you dont need to fiddle around with allocating memory, copy your code and data in place and relocate stuff by hand.
 
 The startup code is mostly there to hide the ugly details of Amiga system programming from you.
-This means things like shutting down the system on startup and restore it correctly at the end, handle caches, different chipsets and CPU´s, etc...
+This means things like shutting down the system on startup and restore it correctly at the end, handle caches, different chipsets and CPUÂ´s, etc...
 It also hides the difference of stand-alone parts and trackmo builds from you.
 
 Additionally there are a lot of small helpers in the framework.
-Like waiting for the blitter, waiting for VSync, switching of copperlists and IRQ´s, a global framecounter.
+Like waiting for the blitter, waiting for VSync, switching of copperlists and IRQÂ´s, a global framecounter.
 There is also an empty coppperlist and IRQ inside the framework, which is nice to have for a first fast rough linking.
 
 I guess, thats it folks.
@@ -146,7 +147,7 @@ Voxel:
 
 The part you all love so much.
 Basically its just what it looks like. A voxel in HAM6.
-The screenmode is pretty much what everyone was doing back in the 90´s on AGA-machines. Only with 4 instead of 6 colorbits per channel.
+The screenmode is pretty much what everyone was doing back in the 90Â´s on AGA-machines. Only with 4 instead of 6 colorbits per channel.
 The algorithm is based on a raytable with 64 non-linear depths.
 It renders front to back setting visible border-pixels eor-encoded relative to the last set pixel.
 So a top-down blitter eor-fill-pass generates the final image.
@@ -205,8 +206,8 @@ It shows a rotzoom with 64x64 pixel sized texture in 16 colors in single pixel r
 I guess the algorithm is pretty close to what Mr.Pet/Sanity did in Roots 2.0.
 Atleast it produces exactly the same artifacts.
 The basic idea is to not rotate the texture, but double shear it.
-With this technique and a bit of math to correct the fact that there occurs a scale of sqrt(2) on the diagonals you can rotate a texture 45° to left and right.
-The rest is switching pre-rotated textures every 90° and swapping all the uv-values with em.
+With this technique and a bit of math to correct the fact that there occurs a scale of sqrt(2) on the diagonals you can rotate a texture 45Â° to left and right.
+The rest is switching pre-rotated textures every 90Â° and swapping all the uv-values with em.
 The shearing in Y and the scaling in X is done with the blitter, while the shearing in X and the scaling in Y is done with the copper. 
 On C64 we would call this Dypp + FPP + Techtech.
 But the rendering is still far too slow. 
@@ -230,7 +231,7 @@ Textured city:
 
 This is another chunky part. Screen-mode is 160x100 pixels on a 2x2 dithered grid with 16 colors.
 The reason for the black grid is pretty simple. It cuts down the memory throughput of the CPU & blitter for the C2P by a half.
-The CPU OR´s 4 pixels of preprocessed textures, containing all bits needed for a pixel in 4 planes, into words.
+The CPU ORÂ´s 4 pixels of preprocessed textures, containing all bits needed for a pixel in 4 planes, into words.
 After that 2 passes of C2P merge are done with the blitter to distribute the pixel data into the bitplanes.
 The bits for 2 successive planes are always directly side by side.
 So the videochip of the Amiga displays exactly the same data for bitplane 0 & 1. And it displays the same data for bitplane 2 & 3.
@@ -245,7 +246,7 @@ Motion blur:
 Guess what, another chunky part. Screen-mode is 160x60 on a 2x3 dithered grid with 16 colors.
 C2P is basically the same as in the textured city.
 The effect itself is a rotzoom combined with the good old Amiga rubber vector trick.
-In words it doesnt throw away the calculated lerped uv´s for the last 60 frames, but reuses them every row a different uv-frame.
+In words it doesnt throw away the calculated lerped uvÂ´s for the last 60 frames, but reuses them every row a different uv-frame.
 The algorithm for the motion blur is, adding the pixels of the actual frame and subtracting the pixels that got added 16 frames ago.
 The drawing code again self modifies the C2P code. No time and space for framebuffers on Amiga.
 
